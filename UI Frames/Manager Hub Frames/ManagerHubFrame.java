@@ -1,3 +1,13 @@
+/**
+* Author:                Ethan
+* Last Editted:          2/11/2023
+* 
+* Purpose:               This file is used to instantiate the ManagerHubFrame that is created in the "ManagerHubFrame.fxml" file.
+*
+*/
+
+
+
 package application;
 	
 import javafx.application.Application;
