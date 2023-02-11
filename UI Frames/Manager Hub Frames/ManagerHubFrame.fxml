@@ -1,3 +1,11 @@
+/**
+* Author:                Ethan
+* Last Editted:          2/11/2023
+*
+* Purpose:               This file is used to create the ManagerHubFrame's interface and appearance.
+*
+*/
+
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
