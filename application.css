@@ -5,6 +5,20 @@
     -fx-background-color: ffffff;        
 }
 
+.buttonWithText
+{
+    -fx-text-fill: black;
+    -fx-font-family: System;
+    -fx-font-size: 16; 
+    -fx-background-color: ffffff;        
+}
+
+.buttonWithTest:hover
+{
+    -fx-text-fill: black;
+    -fx-background-color: #2196F3;        
+}
+
 .pane
 {
 	-fx-background-size: 1200 900;
