@@ -1,12 +1,14 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
 .buttonSmall
 {
+	-fx-background-size: 100 40; /* Doesn't work, should be 100w X 40h */
     -fx-background-radius: 10;
     -fx-background-color: ffffff;        
 }
 
 .buttonLarge
 {
+	-fx-background-size: 200 100; /* Doesn't work, should be 200w X 100h */
     -fx-background-radius: 15;
     -fx-background-color: ffffff;        
 }
@@ -33,10 +35,10 @@
     -fx-background-color: #2196F3;        
 }
 
-.pane
+.paneHeader
 {
 	-fx-background-size: 1200 900;
- 	-fx-border-radius: 10 10 0 0;
+ 	-fx-background-radius: 10 10 0 0;
  	-fx-background-radius: 10 10 10 10;
 
   	/* top-left, top-right, bottom-right, and bottom-left corners, in that order. */
