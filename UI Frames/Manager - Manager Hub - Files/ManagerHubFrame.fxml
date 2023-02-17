@@ -1,13 +1,13 @@
 /**
 * Author:                Ethan
-* Last Editted:          2/11/2023
+* Last Editted:          2/15/2023
 *
 * Purpose:               This file is used to create the ManagerHubFrame's interface and appearance.
 *
 */
-
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -33,66 +33,43 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="85.0" prefWidth="175.0" style="-fx-background-color: ffffff;" styleClass="pane" stylesheets="@application.css" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
-                     <children>
-                        <Text layoutX="42.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" Place Order" textAlignment="CENTER" wrappingWidth="90.61712646484375">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Text>
-                     </children>
-                     <GridPane.margin>
-                        <Insets right="15.0" />
-                     </GridPane.margin>
-                  </Pane>
-                  <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="85.0" prefWidth="175.0" style="-fx-background-color: ffffff;" styleClass="pane" stylesheets="@application.css" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
-                     <children>
-                        <Text layoutX="20.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sales Information" textAlignment="CENTER" wrappingWidth="134.6171875">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Text>
-                     </children>
-                     <GridPane.margin>
-                        <Insets right="15.0" />
-                     </GridPane.margin>
-                  </Pane>
-                  <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="85.0" prefWidth="175.0" style="-fx-background-color: ffffff;" styleClass="pane" stylesheets="@application.css" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-                     <children>
-                        <Text layoutX="8.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employee Information" textAlignment="CENTER" wrappingWidth="159.41717529296875">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Text>
-                     </children>
-                     <GridPane.margin>
-                        <Insets right="15.0" />
-                     </GridPane.margin>
-                  </Pane>
-                  <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="85.0" prefWidth="175.0" style="-fx-background-color: ffffff;" styleClass="pane" stylesheets="@application.css" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-                     <children>
-                        <Text layoutX="14.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vehicle Information" textAlignment="CENTER" wrappingWidth="147.4171757698059">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Text>
-                     </children>
-                     <GridPane.margin>
-                        <Insets right="15.0" />
-                     </GridPane.margin>
-                  </Pane>
-                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="50.0" stylesheets="@application.css" GridPane.halignment="LEFT" GridPane.valignment="CENTER" />
-                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="42.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="50.0" stylesheets="@application.css" GridPane.columnIndex="1" />
-                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="50.0" stylesheets="@application.css" GridPane.rowIndex="1" />
-                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="42.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="50.0" stylesheets="@application.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="200.0" stylesheets="@application.css" text="Place&#10;Order" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="buttonLarge" />
+                        <String fx:value="buttonWithTextLarge" />
+                     </styleClass></Button>
+                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="100.0" prefWidth="200.0" stylesheets="@application.css" text="Generate&#10;Reports" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <styleClass>
+                        <String fx:value="buttonLarge" />
+                        <String fx:value="buttonWithTextLarge" />
+                     </styleClass></Button>
+                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="100.0" prefWidth="200.0" stylesheets="@application.css" text="Employee&#10;Management" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                     <styleClass>
+                        <String fx:value="buttonLarge" />
+                        <String fx:value="buttonWithTextLarge" />
+                     </styleClass></Button>
+                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="42.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="200.0" stylesheets="@application.css" text="Vehicle&#10;Management" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                     <styleClass>
+                        <String fx:value="buttonLarge" />
+                        <String fx:value="buttonWithTextLarge" />
+                     </styleClass></Button>
                </children>
                <BorderPane.margin>
-                  <Insets top="25.0" />
+                  <Insets bottom="15.0" top="25.0" />
                </BorderPane.margin>
+               <padding>
+                  <Insets left="5.0" right="5.0" />
+               </padding>
             </GridPane>
          </center>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
          <top>
-            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="570.0" style="-fx-background-color: ffffff;" styleClass="pane" stylesheets="@application.css" BorderPane.alignment="TOP_CENTER">
+            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="570.0" style="-fx-background-color: ffffff;" styleClass="pane" stylesheets="@application.css" BorderPane.alignment="CENTER">
                <children>
                   <Text layoutX="185.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome Manager" textAlignment="CENTER">
                      <font>
@@ -102,17 +79,15 @@
                </children>
             </Pane>
          </top>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
          <bottom>
-            <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: ffffff;" styleClass="buttonWithText" stylesheets="@application.css" text="Logout" BorderPane.alignment="BOTTOM_LEFT">
+            <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="42.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" stylesheets="@application.css" text="Logout" textAlignment="CENTER" BorderPane.alignment="BOTTOM_LEFT">
+               <styleClass>
+                  <String fx:value="buttonSmall" />
+                  <String fx:value="buttonWithText" />
+               </styleClass>
                <BorderPane.margin>
-                  <Insets left="15.0" />
+                  <Insets left="25.0" />
                </BorderPane.margin>
-               <font>
-                  <Font size="18.0" />
-               </font>
             </Button>
          </bottom>
       </BorderPane>
