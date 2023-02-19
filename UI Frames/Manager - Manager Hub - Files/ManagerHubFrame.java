@@ -1,6 +1,6 @@
 /**
 * Author:                Ethan
-* Last Editted:          2/11/2023
+* Last Editted:          2/18/2023
 * 
 * Purpose:               This file is used to instantiate the ManagerHubFrame that is created in the "ManagerHubFrame.fxml" file.
 *
