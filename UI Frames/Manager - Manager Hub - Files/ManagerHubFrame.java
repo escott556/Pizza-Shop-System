@@ -11,20 +11,21 @@ package application;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
+import javafx.scene.Parent;
 import javafx.scene.layout.BorderPane;
 import javafx.fxml.FXMLLoader;
 
 
 public class Main extends Application {
 	@Override
-	public void start(Stage primaryStage) {
+	public void start(Stage stage) {
 		try {
-			BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("Sample.fxml"));
-			Scene scene = new Scene(root,400,400);
+			Parent root = FXMLLoader.load(getClass().getResource("ManagerHubFrame.fxml"));
+			Scene scene = new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			primaryStage.setScene(scene);
-			primaryStage.setTitle("Manager Frame");
-			primaryStage.show();
+			stage.setScene(scene);
+			stage.setTitle("Manager Hub Frame");
+			stage.show();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
