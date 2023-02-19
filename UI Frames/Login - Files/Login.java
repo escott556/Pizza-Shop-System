@@ -1,41 +1,42 @@
 package application;
-	
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import javafx.event.ActionEvent;
+
 import java.io.IOException;
 
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.stage.Stage;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
-
-
-public class Main extends Application {
+public class Login {
+	public Login() {
+	}
+	@FXML
+	private Button button;
+	@FXML
+	private Label wrongLogin;
+	@FXML
+	private TextField username;
+	@FXML
+	private PasswordField password;
 	
-	//stage for use in the change scene method
-	private static Stage stg;
+	public void userLogin(ActionEvent event) throws IOException {
+		checkLogin();
+	}
 	
-	@Override
-	public void start(Stage primaryStage) {
-		try {
-			stg = primaryStage;
-			primaryStage.setResizable(false);
-			Parent root = FXMLLoader.load(getClass().getResource("/Main.fxml"));
-			primaryStage.setTitle("Pizza Shop Accounting System");
-			primaryStage.setScene(new Scene(root, 600, 400));
-			primaryStage.show();
-		} catch(Exception e) {
-			e.printStackTrace();
+	private void checkLogin() throws IOException{
+		Main m = new Main();
+		if(username.getText().toString().equals("admin") && password.getText().toString().equals("password")) {
+			wrongLogin.setText("Logging in.");
+			
+			m.changeScene("/ManagerHubFrame.fxml");
+		} else if(username.getText().isEmpty() && password.getText().isEmpty()) {
+			wrongLogin.setText("Enter your username and password.");
+		} else {
+			wrongLogin.setText("Incorrect username or password.");
 		}
-	}
-	
-	//change scene method
-	public void changeScene(String fxml) throws IOException {
-		Parent pane = FXMLLoader.load(getClass().getResource(fxml));
-		stg.getScene().setRoot(pane);
-	}
-	
-	public static void main(String[] args) {
-		launch(args);
 	}
 }
