@@ -9,7 +9,10 @@
  *                           This is not properly implemented just yet. The Login Frame events are not included and
  *                           MUST be added beforehand for the system to work to its fullest extent.
  *                           
- *                           2/.../2023
+ *                           2/19/2023
+ *                           Added the two methods to communicate with the Employee Info Hub and Employee Info Access Info frames.
+ *                           It should be noted that the names of the files used are only an assumption. They can be changed, but must match
+ *                           in this controller, the Main class, SceneBuilder, and in each of the respective .fxml files.
  */
 
 package application;
@@ -49,9 +52,18 @@ public class PizzaShopSystemController {
 		stage.show();
 	}
 	
-	public void SwitchToEmployeeInfoFrame(ActionEvent event) throws IOException
+	public void SwitchToEmployeeInfoHubFrame(ActionEvent event) throws IOException
 	{
-		Parent root = FXMLLoader.load(getClass().getResource("EmployeeInfoFrame.fxml"));  // Bhakti, this name is just a suggestion, feel free to change it
+		Parent root = FXMLLoader.load(getClass().getResource("EmployeeInfoHubFrame.fxml"));
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+	}
+	
+	public void SwitchToEmployeeInfoAccessInfoFrame(ActionEvent event) throws IOException
+	{
+		Parent root = FXMLLoader.load(getClass().getResource("EmployeeInfoAccessInfoFrame.fxml"));
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
 		stage.setScene(scene);
