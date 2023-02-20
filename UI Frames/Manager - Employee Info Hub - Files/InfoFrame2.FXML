@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.EmployeeController1">
+   <left>
+      <Pane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: FDBC8D;" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="31.0" prefHeight="40.0" prefWidth="570.0" text="Manage Employee Information" textAlignment="JUSTIFY" textFill="#1e1d1d" textOverrun="CENTER_ELLIPSIS">
+               <font>
+                  <Font name="Big Caslon Medium" size="21.0" />
+               </font></Label>
+            <Button layoutX="19.0" layoutY="346.0" mnemonicParsing="false" onAction="#switchtoFrame1" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: white;" stylesheets="@application.css" text="&lt;- Go Back" />
+            <Button layoutX="486.0" layoutY="346.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: white;" stylesheets="@application.css" text="Complete" />
+            <Label fx:id="lblEmployeeId" layoutX="6.0" layoutY="122.0" text="Employee ID">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblEmployeeName" layoutX="6.0" layoutY="170.0" text="Employee Name">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblEmployeePass" layoutX="6.0" layoutY="219.0" text="Employee Password">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="20.0" layoutY="192.0" />
+            <Label fx:id="lblEmployeeno" layoutX="6.0" layoutY="268.0" text="Employee Phone No.">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <TextField fx:id="tfEmployeeId" layoutX="174.0" layoutY="121.0" prefWidth="300.0" />
+            <TextField fx:id="tfEmployeeName" layoutX="174.0" layoutY="169.0" prefWidth="300.0" />
+            <TextField fx:id="tfEmployeePass" layoutX="174.0" layoutY="218.0" prefWidth="300.0" />
+            <TextField fx:id="tfEmployeeno" layoutX="174.0" layoutY="267.0" prefWidth="300.0" />
+         </children>
+      </Pane>
+   </left>
+</BorderPane>
