@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.EmployeeController1">
+   <center>
+      <Pane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: FDBC8D;" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="31.0" prefHeight="40.0" prefWidth="570.0" text="Manage Employee Information" textAlignment="JUSTIFY" textFill="#1e1d1d" textOverrun="CENTER_ELLIPSIS">
+               <font>
+                  <Font name="Big Caslon Medium" size="21.0" />
+               </font></Label>
+            <Button layoutX="19.0" layoutY="346.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: white;" stylesheets="@application.css" text="&lt;- Go Back" />
+            <Button layoutX="486.0" layoutY="346.0" mnemonicParsing="false" onAction="#switchtoFrame2" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: white;" stylesheets="@application.css" text="Continue -&gt;" />
+            <ChoiceBox fx:id="employeeInfoBox" layoutX="19.0" layoutY="126.0" prefHeight="26.0" prefWidth="567.0" />
+         </children>
+      </Pane>
+   </center>
+</BorderPane>
