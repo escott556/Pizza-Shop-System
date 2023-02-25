@@ -43,6 +43,8 @@ public class PizzaShopSystemController {
 		stage.show();
 	}
 	
+	// Place Order Route
+	
 	public void SwitchToPlaceOrderFrame(ActionEvent event) throws IOException
 	{
 		Parent root = FXMLLoader.load(getClass().getResource("PlaceOrderFrame.fxml"));
@@ -51,6 +53,17 @@ public class PizzaShopSystemController {
 		stage.setScene(scene);
 		stage.show();
 	}
+	
+	public void SwitchToPaymentFrame(ActionEvent event) throws IOException
+	{
+		Parent root = FXMLLoader.load(getClass().getResource("PaymentFrame.fxml"));
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+	}
+	
+	// Employee Management Route
 	
 	public void SwitchToEmployeeInfoHubFrame(ActionEvent event) throws IOException
 	{
