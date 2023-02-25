@@ -46,7 +46,7 @@
                         <String fx:value="buttonLarge" />
                         <String fx:value="buttonWithTextLarge" />
                      </styleClass></Button>
-                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="100.0" prefWidth="200.0" stylesheets="@application.css" text="Employee&#10;Management" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#SwitchToEmployeeInfoHubFrame" prefHeight="100.0" prefWidth="200.0" stylesheets="@application.css" text="Employee&#10;Management" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <styleClass>
                         <String fx:value="buttonLarge" />
                         <String fx:value="buttonWithTextLarge" />
