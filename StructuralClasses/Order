@@ -1,0 +1,132 @@
+/************************************************************************************************************************
+ * Author:                   Ethan Scott
+ * Date Created:             3/4/2023
+ * Last Editted:             3/4/2023
+ * 
+ * Purpose:                  The purpose of this class is to create an instantiation of an order ...
+ *                           
+ */
+
+package StructuralClasses;
+
+import java.util.Date;
+
+public class Order // extends Orders?
+{
+	
+
+
+	// Variables
+	
+	private int orderNumber;
+	private Pizza pizza;
+	private double orderTotal = 00.00;
+	private String orderType;
+	private Date orderDate;
+	
+	// Constructors
+
+	public Order() {}
+
+	public Order(int orderNumber, Pizza pizza, double orderTotal, String orderType, Date orderDate) 
+	{
+		super();
+		this.orderNumber = orderNumber;
+		this.pizza = pizza;
+		this.orderTotal = orderTotal;
+		this.orderType = orderType;
+		this.orderDate = orderDate;
+		
+	}
+	
+	// Methods
+	
+	public boolean addItem(Pizza pizza)
+	{
+		// Code stuff
+		
+		return false;
+	}
+	
+	public boolean cancelOrder()
+	{
+		// Code stuff
+		
+		return true;
+	}
+
+	public double calculateTotal(Order order)
+	{
+		// Code stuff
+		
+		return orderTotal;
+	}
+	
+	public String printBill(Order order)
+	{
+		return " placeholder ";
+	}
+	
+	// Order Number
+	
+	public int getOrderNumber() 
+	{
+		return orderNumber;
+	}
+
+	public void setOrderNumber(int orderNumber) 
+	{
+		this.orderNumber = orderNumber;
+	}
+
+	// Pizza
+	
+	public Pizza getPizza() 
+	{
+		return pizza;
+	}
+
+	public void setPizza(Pizza pizza) 
+	{
+		this.pizza = pizza;
+	}
+
+	// Order Total
+	
+	public double getOrderTotal() 
+	{
+		return orderTotal;
+	}
+
+	public void setOrderTotal(double orderTotal) 
+	{
+		this.orderTotal = orderTotal;
+	}
+
+	// Order Type
+	
+	public String getOrderType() 
+	{
+		return orderType;
+	}
+
+	public void setOrderType(String orderType) 
+	{
+		this.orderType = orderType;
+	}
+
+	// Order Date
+	
+	public Date getOrderDate() 
+	{
+		return orderDate;
+	}
+
+	public void setOrderDate(Date orderDate) 
+	{
+		this.orderDate = orderDate;
+	}
+	
+	
+	
+}
