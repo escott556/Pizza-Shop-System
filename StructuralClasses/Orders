@@ -1,0 +1,62 @@
+/************************************************************************************************************************
+ * Author:                   Ethan Scott
+ * Date Created:             3/4/2023
+ * Last Editted:             3/4/2023
+ * 
+ * Purpose:                  The purpose of this class is to create a collection of orders (from the order class) ...
+ *                           
+ */
+package StructuralClasses;
+
+public class Orders extends Customer
+{
+	// Variables
+	
+	Order order;
+	
+	// Constructors
+	
+	public Orders() {}
+	
+	public Orders(Order order) 
+	{
+		super();
+		this.order = order;
+	}
+	
+	// Methods
+	
+	public boolean addOrder(Order order)
+	{
+		// Code stuff
+		
+		return false;
+	}
+	
+	public boolean toSales()
+	{
+		// What does this do?
+		
+		return false;
+	}
+	
+	public boolean toCustomer()
+	{
+		// What does this do?
+		
+		return false;
+	}
+
+	// Getters and Setters
+	
+	public Order getOrder() 
+	{
+		return order;
+	}
+
+	public void setOrder(Order order) 
+	{
+		this.order = order;
+	}
+
+}
