@@ -5,8 +5,7 @@
  * 
  * Purpose:                  The purpose of this class is to create an instantiation of an Employee within the system.
  *                           Within this class are the appropriate getters and setters for related variables
- *                           (EmployeeName, EmployeeID, EmployeeAddress, EmployeePhone); constructors; 
- *                           
+ *                           (EmployeeName, EmployeeID, EmployeeAddress, EmployeePhone); constructors;                          
  */
  
  package application;
