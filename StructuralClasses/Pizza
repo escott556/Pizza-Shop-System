@@ -1,0 +1,79 @@
+/************************************************************************************************************************
+ * Author:                   Ethan Scott
+ * Date Created:             3/4/2023
+ * Last Editted:             3/13/2023
+ * 
+ * Purpose:                  The purpose of this class is to create an instantiation of a Pizza ...
+ *                           
+ ************************************************************************************************************************/
+package StructuralClasses;
+
+public class Pizza
+{
+
+	// Variables
+	
+	private String[] toppings;
+	private String crust; // omit
+	private String size;
+	private double cost;
+	
+	// Constructors
+	
+	public Pizza() {}
+	
+	public Pizza(String[] toppings, String size) 
+	{
+		super();
+		this.toppings = toppings;
+		this.size = size;
+	}
+	
+	// Methods
+	
+	public double calculateCost(Pizza pizza)
+	{
+		this.cost = 00.00;
+		
+		// Code stuff
+		
+		return cost;
+	}
+	
+	// Toppings
+	
+	public String[] getToppings() 
+	{
+		return toppings;
+	}
+	
+	public void setToppings(String[] toppings) 
+	{
+		this.toppings = toppings;
+	}
+	
+	// Size
+	
+	public String getSize() 
+	{
+		return size;
+	}
+	
+	public void setSize(String size) 
+	{
+		this.size = size;
+	}
+	
+	// Cost
+	
+	public double getCost() 
+	{
+		return cost;
+	}
+	
+	public void setCost(double cost) 
+	{
+		this.cost = cost;
+	}
+	
+}
