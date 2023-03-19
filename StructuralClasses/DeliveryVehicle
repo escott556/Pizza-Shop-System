@@ -1,14 +1,13 @@
 /************************************************************************************************************
  * Author:                    Ethan Scott
  * Date Created:              3/4/2023
- * Last Editted:              3/17/2023
+ * Last Editted:              3/19/2023
  * 
  * Purpose:                   This is the object class that serves the purpose of instantiating a DeliveryVehicle
  *                            object that represents the delivery vehicle associated with the Pizza Shop. Incldued
  *                            are a variable to indicate a vehicle's ID number, constructors, and methods to access
  *                            and modify information.
- *
- **************************************************************************************************************/
+ */
 package StructuralClasses;
 
 public class DeliveryVehicle 
@@ -40,5 +39,14 @@ public class DeliveryVehicle
 	{
 		this.vehcileID = vehcileID;
 	}
+
+	// To String
 	
+	@Override
+	public String toString() {
+		return "DeliveryVehicle [vehcileID=" + vehcileID + "]";
+	}
+	
+	
+
 }
