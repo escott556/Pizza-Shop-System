@@ -1,7 +1,7 @@
 /************************************************************************************************************
  * Author:                     Ethan Scott
  * Date Created:               3/4/2023
- * Last Editted:               3/17/2023
+ * Last Editted:               3/19/2023
  * 
  * Purpose:                    This is the object class of the Manager object, which serves the purpose of
  *                             representing the manager within the system. It should also be noted that
@@ -31,11 +31,13 @@ public class Manager extends Employee
 
 	// Methods 
 	
-	public String[] getEmployeeInfo(Waitstaff waitstaff)
+	public String getEmployeeInfo(Waitstaff waitstaff)
 	{
-		// Code stuff
+		// Code stuff, may need to be changed
+		return waitstaff.toString();
 		
-		return null;
+		// edge cases?
+	
 	}
 	
 	public String getSalesInfo(Sales sales)
@@ -69,11 +71,11 @@ public class Manager extends Employee
 		return null;
 	}
 	
-	public String[] getVehicleInfo(DeliveryVehicle vehicle)
+	public String getVehicleInfo(DeliveryVehicle vehicle)
 	{
-		// Code stuff
+		// Code stuff, edge cases?
+		return vehicle.toString();
 		
-		return null;
 	}
 	
 	// Getters and Setters
@@ -89,5 +91,15 @@ public class Manager extends Employee
 	{
 		this.managerPassword = managerPassword;
 	}
+
+	// To String
+	
+	@Override
+	public String toString() {
+		return "Manager [managerPassword=" + managerPassword + "]";
+	}
+	
+
+	
 	
 }
