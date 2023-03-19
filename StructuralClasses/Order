@@ -1,15 +1,16 @@
 /************************************************************************************************************************
  * Author:                   Ethan Scott
  * Date Created:             3/4/2023
- * Last Editted:             3/4/2023
+ * Last Editted:             3/19/2023
  * 
  * Purpose:                  The purpose of this class is to create an instantiation of an order ...
  *                           
- */
+ *************************************************************************************************************************/
 
 package StructuralClasses;
 
 import java.util.Date;
+import java.util.ArrayList;
 
 public class Order // extends Orders?
 {
@@ -20,9 +21,10 @@ public class Order // extends Orders?
 	
 	private int orderNumber;
 	private Pizza pizza;
-	private double orderTotal = 00.00;
+	protected double orderTotal = 00.00;
 	private String orderType;
 	private Date orderDate;
+	private ArrayList<Pizza> items = new ArrayList<>();
 	
 	// Constructors
 
@@ -41,23 +43,29 @@ public class Order // extends Orders?
 	
 	// Methods
 	
-	public boolean addItem(Pizza pizza)
+	public void addItem(Pizza pizza)
 	{
-		// Code stuff
+		// Code stuff, edge cases?
+		items.add(pizza);
 		
-		return false;
 	}
 	
 	public boolean cancelOrder()
 	{
 		// Code stuff
-		
+		items.clear();
+		// Delete? Just an idea
 		return true;
 	}
 
 	public double calculateTotal(Order order)
 	{
 		// Code stuff
+		for(int i = 0; i < items.size(); i++)
+		{
+			Pizza currentPizza = items.get(i);
+			orderTotal += currentPizza.getCost();
+		}
 		
 		return orderTotal;
 	}
@@ -125,6 +133,14 @@ public class Order // extends Orders?
 	public void setOrderDate(Date orderDate) 
 	{
 		this.orderDate = orderDate;
+	}
+
+	// To String
+	
+	@Override
+	public String toString() {
+		return "Order [orderNumber=" + orderNumber + ", pizza=" + pizza + ", orderTotal=" + orderTotal + ", orderType="
+				+ orderType + ", orderDate=" + orderDate + "]";
 	}
 	
 	
