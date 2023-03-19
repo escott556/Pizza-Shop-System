@@ -1,134 +1,74 @@
-/************************************************************************************************************************
+/***********************************************************************************************************************
  * Author:                   Ethan Scott
- * Date Created:             3/4/2023
- * Last Editted:             3/19/2023
+ * Date Created:             3/13/2023
+ * Last Updated:             3/19/2023
  * 
- * Purpose:                  The purpose of this class is to ...
- *                           
- ************************************************************************************************************************/
+ * Purpose:                  This is the Waitstaff object class that serves the purpose of instantiating an employee
+ *                           that is also categorized as a member of the waitstaff. Included are the a variable to
+ *                           denote their schedule, constructors, and methods to access and alter their information.
+ * 
+ ***********************************************************************************************************************/
+
 package StructuralClasses;
 
-public class Sales extends Orders{
-	
+import java.util.Arrays;
 
+public class Waitstaff extends Employee
+{
 
 	// Variables
 	
-	private double inHouseRevenues;
-	private double takeoutRevenues;
-	private double deliveryRevenues;
-	private double grandTotalRevenues;
-	private double totalTyperevenue;
-	private double marginalRevenue;
+	private String[] waitstaffSchedule;
 	
 	// Constructors
 	
-	public Sales() {}
+	public Waitstaff() {}
 	
-	public Sales(double inHouseRevenues, double takeoutRevenues, double deliveryRevenues, double grandTotalRevenues,
-			double totalTyperevenue, double marginalRevenue) {
+	public Waitstaff(String[] waitstaffSchedule)
+	{
 		super();
-		this.inHouseRevenues = inHouseRevenues;
-		this.takeoutRevenues = takeoutRevenues;
-		this.deliveryRevenues = deliveryRevenues;
-		this.grandTotalRevenues = grandTotalRevenues;
-		this.totalTyperevenue = totalTyperevenue;
-		this.marginalRevenue = marginalRevenue;
+		this.waitstaffSchedule = waitstaffSchedule;
+		
 	}
 
 	// Methods
 	
-	public int compareRevenues(Object firstRevenue, Object secondRevenue)
+	public String GetBill(Order order)
 	{
 		// Code stuff
-		// Fix the idea of actually comparing the revenues
 		
-		return -1; // int will reflect higher? could change thsi idea
+		return null;
+	}
+	
+	public boolean takeOrder(Customer customer)
+	{
+		// Code stuff
+		
+		
+		return false;
 	}
 	
 	// Getters and Setters
 	
-	// In House Revenues
+	// Waitstaff Schedule
 	
-	public double getInHouseRevenues() 
+	public String[] getWaitstaffSchedule() 
 	{
-		return inHouseRevenues;
+		return waitstaffSchedule;
 	}
 
-	public void setInHouseRevenues(double inHouseRevenues) 
+	public void setWaitstaffSchedule(String[] waitstaffSchedule) 
 	{
-		this.inHouseRevenues = inHouseRevenues;
-	}
-
-	// Takeout Revenues
-	
-	public double getTakeoutRevenues() 
-	{
-		return takeoutRevenues;
-	}
-
-	public void setTakeoutRevenues(double takeoutRevenues) 
-	{
-		this.takeoutRevenues = takeoutRevenues;
-	}
-
-	// Delivery Revenues
-	
-	public double getDeliveryRevenues() 
-	{
-		return deliveryRevenues;
-	}
-
-	public void setDeliveryRevenues(double deliveryRevenues) 
-	{
-		this.deliveryRevenues = deliveryRevenues;
-	}
-
-	// Grand Total Revenues
-	
-	public double getGrandTotalRevenues() 
-	{
-		return grandTotalRevenues;
-	}
-
-	public void setGrandTotalRevenues(double grandTotalRevenues) 
-	{
-		this.grandTotalRevenues = grandTotalRevenues;
-	}
-
-	// Total Type Revenue
-	
-	public double getTotalTyperevenue() 
-	{
-		return totalTyperevenue;
-	}
-
-	public void setTotalTyperevenue(double totalTyperevenue) 
-	{
-		this.totalTyperevenue = totalTyperevenue;
-	}
-
-	// Marginal Revenues
-	
-	public double getMarginalRevenue() 
-	{
-		return marginalRevenue;
-	}
-
-	public void setMarginalRevenue(double marginalRevenue) 
-	{
-		this.marginalRevenue = marginalRevenue;
+		this.waitstaffSchedule = waitstaffSchedule;
 	}
 
 	// To String
 	
 	@Override
 	public String toString() {
-		return "Sales [inHouseRevenues=" + inHouseRevenues + ", takeoutRevenues=" + takeoutRevenues
-				+ ", deliveryRevenues=" + deliveryRevenues + ", grandTotalRevenues=" + grandTotalRevenues
-				+ ", totalTyperevenue=" + totalTyperevenue + ", marginalRevenue=" + marginalRevenue + "]";
+		return "Employee [employeeName=" + this.employeeName + ", employeeID=" + this.employeeID + "]" +
+				"Waitstaff [waitstaffSchedule=" + Arrays.toString(this.waitstaffSchedule) + "]";
 	}
-	
 	
 
 }
