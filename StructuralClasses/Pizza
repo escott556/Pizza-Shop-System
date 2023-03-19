@@ -1,12 +1,14 @@
 /************************************************************************************************************************
  * Author:                   Ethan Scott
  * Date Created:             3/4/2023
- * Last Editted:             3/13/2023
+ * Last Editted:             3/19/2023
  * 
  * Purpose:                  The purpose of this class is to create an instantiation of a Pizza ...
  *                           
  ************************************************************************************************************************/
 package StructuralClasses;
+
+import java.util.Arrays;
 
 public class Pizza
 {
@@ -74,6 +76,14 @@ public class Pizza
 	public void setCost(double cost) 
 	{
 		this.cost = cost;
+	}
+
+	// To String
+	
+	@Override
+	public String toString() {
+		return "Pizza [toppings=" + Arrays.toString(toppings) + ", crust=" + crust + ", size=" + size + ", cost=" + cost
+				+ "]";
 	}
 	
 }
