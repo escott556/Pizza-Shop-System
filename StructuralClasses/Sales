@@ -1,7 +1,7 @@
 /************************************************************************************************************************
  * Author:                   Ethan Scott
  * Date Created:             3/4/2023
- * Last Editted:             3/4/2023
+ * Last Editted:             3/19/2023
  * 
  * Purpose:                  The purpose of this class is to ...
  *                           
@@ -120,5 +120,15 @@ public class Sales extends Orders{
 		this.marginalRevenue = marginalRevenue;
 	}
 
+	// To String
+	
+	@Override
+	public String toString() {
+		return "Sales [inHouseRevenues=" + inHouseRevenues + ", takeoutRevenues=" + takeoutRevenues
+				+ ", deliveryRevenues=" + deliveryRevenues + ", grandTotalRevenues=" + grandTotalRevenues
+				+ ", totalTyperevenue=" + totalTyperevenue + ", marginalRevenue=" + marginalRevenue + "]";
+	}
+	
+	
 
 }
