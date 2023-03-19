@@ -1,7 +1,7 @@
 /**********************************************************************************************************************
  * Author:                   Ethan Scott
  * Date Created:             3/15/2023
- * Last Editted:             3/17/2023
+ * Last Editted:             3/19/2023
  * 
  * Purpose:                  The purpose of this object class is to instantiate a credit card object that represents
  *                           the customer's credit card they will be using to pay for their order. Within this class are
@@ -40,9 +40,10 @@ public class CreditCard extends Customer
 	
 	// Validate
 	
-	public boolean validate(CreditCard card)
+	public boolean validate()
 	{
 		// Code stuff
+		
 		
 		return false;
 	}
@@ -107,6 +108,14 @@ public class CreditCard extends Customer
 	public void setExpirationDate(String expirationDate) 
 	{
 		this.expirationDate = expirationDate;
+	}
+
+	// To String
+	
+	@Override
+	public String toString() {
+		return "CreditCard [nameOnCard=" + nameOnCard + ", cardNumber=" + cardNumber + ", bank=" + bank + ", cardType="
+				+ cardType + ", expirationDate=" + expirationDate + "]";
 	}	
 	
 
