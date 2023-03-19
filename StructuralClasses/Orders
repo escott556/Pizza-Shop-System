@@ -1,7 +1,7 @@
 /************************************************************************************************************************
  * Author:                   Ethan Scott
  * Date Created:             3/4/2023
- * Last Editted:             3/4/2023
+ * Last Editted:             3/19/2023
  * 
  * Purpose:                  The purpose of this class is to create a collection of orders (from the order class) ...
  *                           
@@ -57,6 +57,13 @@ public class Orders extends Customer
 	public void setOrder(Order order) 
 	{
 		this.order = order;
+	}
+
+	// To String
+	
+	@Override
+	public String toString() {
+		return "Orders [order=" + order + "]";
 	}
 
 }
