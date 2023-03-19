@@ -1,7 +1,7 @@
 /************************************************************************************************************************
  * Author:                   Ethan Scott
  * Date Created:             3/4/2023
- * Last Editted:             3/4/2023
+ * Last Edited:              3/19/2023
  * 
  * Purpose:                  The purpose of this class is to create an instantiation of a customer within the system.
  *                           Within this class are the appropriate getters and setters for related variables
@@ -36,7 +36,13 @@ public class Customer
 	public boolean payBill(Order order)
 	{
 		// Code stuff
-		return false;
+		if(order.orderTotal > 00.00 && creditCard.validate() == true)                   // Order total and card must be valid
+		{
+			order.orderTotal = 0;
+			return true;
+		}
+		
+		else return false;                                                              // False otherwise
 	}
 	
 	// Place Order                              *** Fix ***
@@ -46,9 +52,11 @@ public class Customer
 		this.order = new Order(/* stuff */);
 	}
 	
+	// Get order number
+	
 	public int getOrderNumber(Order order)
 	{
-		int orderNumber = order.getOrderNumber;
+		int orderNumber = order.getOrderNumber();
 		return orderNumber;
 	}
 
@@ -97,6 +105,14 @@ public class Customer
 	public void setOrder(Order order) 
 	{
 		this.order = order;
+	}
+
+	// To String
+	
+	@Override
+	public String toString() {
+		return "Customer [customerName=" + customerName + ", creditCard=" + creditCard + ", address=" + address
+				+ ", order=" + order + "]";
 	}
 	
 }
