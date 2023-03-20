@@ -24,7 +24,7 @@ class EmployeeDatabase {
 
 	public static Connection getConnection() {
 		try {
-			String url = "jdbc:mysql://localhost:3306/PizzaShop";     //(PizzaShop is the name. of my database) 
+			String url = "jdbc:mysql://localhost:3306/PizzaShop";     //(PizzaShop is the name of my database) 
                                                                 		  //PS: Your local host might differ
 			String username = "root"; 
 			String password = "";                           //The password you entered when installing mySQL on the system
