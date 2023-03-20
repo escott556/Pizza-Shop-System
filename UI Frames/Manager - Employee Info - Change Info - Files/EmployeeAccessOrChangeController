@@ -1,0 +1,179 @@
+
+
+ /************************************************************************************************************************
+ * Author: Bhakti Patel
+ * Date Created: 2/1/2023
+ * Last Edited: 3/20/2023
+ * 
+ * Purpose: Controller class for Employee Access/Change Info                                       
+ */
+
+package application;
+
+import java.awt.EventQueue;
+import java.io.IOException;
+import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ResourceBundle;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+
+import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn.CellDataFeatures;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
+import javafx.util.Callback;
+
+public class EmployeeController2 implements Initializable {
+
+	private Stage stage;
+	private Parent root;
+	private Scene scene;
+
+	@FXML
+	private TableColumn<Employee, Integer> col_ID;
+
+	@FXML
+	private TableColumn<Employee, String> col_add;
+
+	@FXML
+	private TableColumn<Employee, String> col_name;
+
+	@FXML
+	private TableColumn<Employee, String> col_phone;
+
+	@FXML
+	private TableView<Employee> table_emp;
+
+	@FXML
+	private TextField txt_add;
+
+	@FXML
+	private TextField txt_name;
+
+	@FXML
+	private TextField txt_phone;
+
+	@FXML
+	private TextField txt_ID;
+
+	ObservableList<Employee> listE;
+
+	Connection con = null;
+	ResultSet rs = null;
+	PreparedStatement ps = null;
+
+	public void updateTable() {
+		listE = Employee.getEmployeeInfo();
+
+		col_ID.setCellValueFactory(new PropertyValueFactory<Employee, Integer>("empID"));
+		col_name.setCellValueFactory(new PropertyValueFactory<Employee, String>("empName"));
+		col_add.setCellValueFactory(new PropertyValueFactory<Employee, String>("empAdd"));
+		col_phone.setCellValueFactory(new PropertyValueFactory<Employee, String>("empPhone"));
+
+		table_emp.setItems(listE);
+
+	}
+
+	@Override
+	public void initialize(URL url, ResourceBundle rb) {
+		updateTable();
+
+	}
+
+	public void add_emp() {
+		con = DatabaseConnection.getConnection();
+		String sql = "insert into employee (emp_name,emp_add,emp_phone) values (?,?,?);";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, txt_name.getText());
+			ps.setString(2, txt_add.getText());
+			ps.setString(3, txt_phone.getText());
+			ps.execute();
+
+			ShowMessage("Employee Added!");
+			updateTable();
+		} catch (Exception e) {
+
+		}
+	}
+
+	public void update() {
+		try {
+			con = DatabaseConnection.getConnection();
+			String value1 = txt_ID.getText();
+			String value2 = txt_name.getText();
+			String value3 = txt_phone.getText();
+			String value4 = txt_add.getText();
+
+			String sql = "update employee set emp_name = '" + value2 + "', emp_phone = '" + value3 + "', emp_add = '"
+					+ value4 + "' where emp_ID = '" + value1 + "'";
+			ps = con.prepareStatement(sql);
+			ps.execute();
+			ShowMessage("Employee Updated!");
+			updateTable();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void delete() {
+		con = DatabaseConnection.getConnection();
+		String sql = "delete from employee where emp_ID = ?";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, txt_ID.getText());
+			ps.execute();
+			
+			ShowMessage("Employee Deleted!");
+			updateTable();
+		} catch (Exception e) {
+
+		}
+	}
+
+	@FXML
+	void getSelected(MouseEvent event) {
+
+		Employee clickedEmp = table_emp.getSelectionModel().getSelectedItem();
+		txt_name.setText(String.valueOf(clickedEmp.getEmpName()));
+		txt_ID.setText(String.valueOf(clickedEmp.getEmpID()));
+		txt_add.setText(String.valueOf(clickedEmp.getEmpAdd()));
+		txt_phone.setText(String.valueOf(clickedEmp.getEmpPhone()));
+	}
+
+	@FXML
+	public void switchtoFrame1(ActionEvent event) throws IOException {
+
+		Parent root = FXMLLoader.load(getClass().getResource("EmployeeFrame1.fxml"));
+		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+	}
+
+	private void ShowMessage(String message) {
+		EventQueue.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				JOptionPane.showMessageDialog(null, message);
+			}
+		});
+	}
+
+}
