@@ -1,7 +1,7 @@
 /**********************************************************************************************************************
  * Author:                   Ethan Scott
  * Date Created:             3/15/2023
- * Last Editted:             3/19/2023
+ * Last Editted:             3/25/2023
  * 
  * Purpose:                  The purpose of this object class is to instantiate a credit card object that represents
  *                           the customer's credit card they will be using to pay for their order. Within this class are
@@ -40,12 +40,15 @@ public class CreditCard extends Customer
 	
 	// Validate
 	
+	/**
+	 * This method 'validates' the credit card of the customer. It is a stub method as it can be assumed that
+	 * this functionality would be passed onto another system/API/entity.
+	 * 
+	 * @return - Always true, assuming the aforementioned.
+	 */
 	public boolean validate()
 	{
-		// Code stuff
-		
-		
-		return false;
+		return true;
 	}
 
 	// Getters and setters
