@@ -1,9 +1,12 @@
 /************************************************************************************************************************
  * Author:                   Ethan Scott
  * Date Created:             3/4/2023
- * Last Editted:             3/19/2023
+ * Last Edited:              3/25/2023
  * 
- * Purpose:                  The purpose of this class is to create an instantiation of an order ...
+ * Purpose:                  The purpose of this class is to create an instantiation of an order, as well as
+ *                           keep track of all of the related information on the order, such as the total cost,
+ *                           the type of the order, items involved, and the order number. It includes business
+ *                           rules to account for fees and tax.
  *                           
  *************************************************************************************************************************/
 
@@ -14,8 +17,6 @@ import java.util.ArrayList;
 
 public class Order // extends Orders?
 {
-	
-
 
 	// Variables
 	
@@ -25,6 +26,11 @@ public class Order // extends Orders?
 	private String orderType;
 	private Date orderDate;
 	private ArrayList<Pizza> items = new ArrayList<>();
+	
+	// Business-Related Variables
+	final double TAX = 0.06;
+	final double IN_HOUSE_FEE = 0.05;
+	final double DELIVERY_FEE = 3.00;
 	
 	// Constructors
 
@@ -43,6 +49,10 @@ public class Order // extends Orders?
 	
 	// Methods
 	
+	/**
+	 * This method will add a pizza to the item list of the order.
+	 * @param pizza - The pizza that is to be added to the item list.
+	 */
 	public void addItem(Pizza pizza)
 	{
 		// Code stuff, edge cases?
@@ -50,29 +60,56 @@ public class Order // extends Orders?
 		
 	}
 	
+	/**
+	 * This method 'cancels' the order. It clears the items, allowing Java's garbage collection to do the rest.
+	 * @return - True as the list of items is cleared.
+	 */
 	public boolean cancelOrder()
 	{
-		// Code stuff
 		items.clear();
-		// Delete? Just an idea
 		return true;
 	}
 
+	/**
+	 * This method calculates the total of the passed order. In doing so, it finds the total of all of the
+	 * pizzas within the order, then applies an in-house or delivery fee as needed, and finally adds the tax
+	 * amount.
+	 * 
+	 * @param order - The order to be passed through.
+	 * @return      - The total cost of the order.
+	 */
 	public double calculateTotal(Order order)
 	{
-		// Code stuff
-		for(int i = 0; i < items.size(); i++)
+		
+		for(int i = 0; i < items.size(); i++)                  // Calculates base cost before fee and tax.
 		{
 			Pizza currentPizza = items.get(i);
 			orderTotal += currentPizza.getCost();
 		}
 		
+		if(order.getOrderType().equals("inHouse"))             // In-house fee if needed
+		{
+			orderTotal += (orderTotal * IN_HOUSE_FEE);
+		}
+		else if(order.getOrderType().equals("delivery"))       // Delivery fee if needed
+		{
+			orderTotal += DELIVERY_FEE;
+		}
+		
+		orderTotal += (orderTotal * TAX);                      // Tax is added
+		
 		return orderTotal;
 	}
 	
+	/**
+	 * This method prints the bill, acting as a formatted toString method.
+	 * @param order - The order being passed
+	 * @return      - All related information is returned and printed
+	 */
 	public String printBill(Order order)
 	{
-		return " placeholder ";
+		return "Order: " + orderNumber + "Order Date: " + orderDate + "\n\nItems: " + itemPrinter(items)
+				+ "\n\nOrder Total: " + calculateTotal(order);
 	}
 	
 	// Order Number
@@ -135,12 +172,36 @@ public class Order // extends Orders?
 		this.orderDate = orderDate;
 	}
 
-	// To String
+	// To String and Print Items
 	
 	@Override
-	public String toString() {
-		return "Order [orderNumber=" + orderNumber + ", pizza=" + pizza + ", orderTotal=" + orderTotal + ", orderType="
-				+ orderType + ", orderDate=" + orderDate + "]";
+	/**
+	 * NOTE: This method is not used.
+	 */
+	public String toString() 
+	{
+		return "Order [orderNumber=" + orderNumber + ", orderTotal=" + orderTotal + ", orderType=" + orderType
+				+ ", orderDate=" + orderDate + ", items=" + items + "]";
+	}
+	
+	
+	/**
+	 * This method prints all of the individual items of the items ArrayList to provide for easier readability.
+	 * It acts much like a helper method for the printBill method.
+	 * 
+	 * @param itemList - The list of items (pizzas) that are within the order
+	 * @return         - A printed format of all items in the order
+	 */
+	public String itemPrinter(ArrayList<Pizza> itemList)
+	{
+		String printList = " ";
+		
+		for(int i = 0; i < itemList.size(); i++)
+		{
+			printList += "Item #" + i + ": " + itemList.get(i) + "\t" + (itemList.get(i).getCost());
+		}
+		
+		return printList;
 	}
 	
 	
