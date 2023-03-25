@@ -1,7 +1,7 @@
 /************************************************************************************************************************
  * Author:                   Ethan Scott
  * Date Created:             3/4/2023
- * Last Editted:             3/19/2023
+ * Last Editted:             3/25/2023
  * 
  * Purpose:                  The purpose of this class is to create an instantiation of a Pizza ...
  *                           
@@ -15,8 +15,7 @@ public class Pizza
 
 	// Variables
 	
-	private String[] toppings;
-	private String crust; // omit
+	private String type;                            // Cheese, Veggie Lover's, Meat Lover's
 	private String size;
 	private double cost;
 	
@@ -24,34 +23,65 @@ public class Pizza
 	
 	public Pizza() {}
 	
-	public Pizza(String[] toppings, String size) 
+	public Pizza(String type, String size)         // Will this be passed using the Place Order buttons in UI?
 	{
 		super();
-		this.toppings = toppings;
+		this.type = type;
 		this.size = size;
 	}
 	
 	// Methods
 	
+	/**
+	 * This calculates the price of each individual pizza object based on the pizza's type and size.
+	 * @param pizza
+	 * @return
+	 */
 	public double calculateCost(Pizza pizza)
 	{
 		this.cost = 00.00;
 		
-		// Code stuff
+		if(pizza.getType().equals("Cheese"))                                         // A cheese pizza
+		{
+			cost = 7.99;
+			
+			if(pizza.getSize().equals("Medium"))                                     // Medium, + 2.00
+			{
+				cost += 2.00;
+			}
+			else if(pizza.getSize().equals("Large"))                                 // Large, + 4.00
+			{
+				cost += 4.00;
+			}
+		}
+		
+		else if(pizza.getType().equals("Veggie") || pizza.getType().equals("Meat") ) // A veggie or meat lover's pizza.
+		{
+			cost = 9.99;
+			
+			if(pizza.getSize().equals("Medium"))                                     // Medium, + 5.00
+			{
+				cost += 5.00;
+			}
+			else if(pizza.getSize().equals("Large"))                                 // Large, + 10.00
+			{
+				cost += 10.00;
+			}
+		}
 		
 		return cost;
 	}
 	
-	// Toppings
+	// Type
 	
-	public String[] getToppings() 
+	public String getType() 
 	{
-		return toppings;
+		return type;
 	}
 	
-	public void setToppings(String[] toppings) 
+	public void setType(String type) 
 	{
-		this.toppings = toppings;
+		this.type = type;
 	}
 	
 	// Size
@@ -82,7 +112,7 @@ public class Pizza
 	
 	@Override
 	public String toString() {
-		return "Pizza [toppings=" + Arrays.toString(toppings) + ", crust=" + crust + ", size=" + size + ", cost=" + cost
+		return "Pizza [type=" + type + ", size=" + size + ", cost=" + cost
 				+ "]";
 	}
 	
