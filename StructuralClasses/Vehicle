@@ -1,0 +1,89 @@
+/************************************************************************************************************
+ * Author:                    Bhakti Patel
+ * Date Created:              3/1/2023
+ * Last Edited:               3/23/2023
+ * 
+ * Purpose:                   This is the object class that serves the purpose of instantiating a DeliveryVehicle
+ *                            object that represents the delivery vehicle associated with the Pizza Shop. Included
+ *                            are a variable to indicate a vehicle's ID number, constructors, and methods to access
+ *                            and modify information.
+ */
+package application;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+
+
+public class Vehicle {
+
+	private int vehicleID;
+	private String vehicleType;
+	private int empID;
+
+	/**
+	 * @param vehicleID
+	 * @param vehicleType
+	 * @param empID
+	 */
+	public Vehicle(int vehicleID, String vehicleType, int empID) {
+		super();
+		this.vehicleID = vehicleID;
+		this.vehicleType = vehicleType;
+		this.empID = empID;
+	}
+
+	public int getVehicleID() {
+		return vehicleID;
+	}
+
+	public void setVehicleID(int vehicleID) {
+		this.vehicleID = vehicleID;
+	}
+
+	public String getVehicleType() {
+		return vehicleType;
+	}
+
+	public void setVehicleTYPE(String vehicleType) {
+		this.vehicleType = vehicleType;
+	}
+
+	public int getEmpID() {
+		return empID;
+	}
+
+	public void setEmpID(int empID) {
+		this.empID = empID;
+	}
+
+	public static ObservableList<Vehicle> getVehicleInfo() {
+
+		ObservableList<Vehicle> list = FXCollections.observableArrayList();
+		Connection con = DatabaseConnection.getConnection();
+		String sql = "select * from vehicle;";
+		Statement s;
+		ResultSet rs;
+		try {
+			s = con.createStatement();
+			rs = s.executeQuery(sql);
+			Vehicle vehicle;
+
+			while (rs.next()) {
+				vehicle = (new Vehicle(rs.getInt("vehicle_ID"), rs.getString("vehicle_type"), rs.getInt("emp_ID")));
+				list.add(vehicle);
+			}
+			return list;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+}
