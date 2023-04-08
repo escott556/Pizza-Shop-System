@@ -96,7 +96,14 @@ public class PizzaShopSystemController {
 
 
 /**
-Trying not to delete any work, but here is my controller class
+Trying not to delete anyone's work, but here is my controller class
+NOTE : Need to have employee class, vehicle class and Database connection classes in order for this class to work without any errors
+
+ * Author: Bhakti Patel
+ * Topic: Semester Project: PizzaShop controller class
+ * Date Created: 03/01/2023
+ * Last Edited: 04/07/2023
+ 
 */
 package application;
 
@@ -138,7 +145,7 @@ public class Controller {
 		});
 	}
 
-	// Login Frame start
+//------------------------------------------------- Login Frame start --------------------------------------------------------
 	@FXML
 	private Button button;
 	@FXML
@@ -161,9 +168,9 @@ public class Controller {
 			wrongLogin.setText("Incorrect username or password.");
 		}
 	}
-//Login Frame end
+//------------------------------------------------- Login Frame end --------------------------------------------------------
 
-	// Manager Hub Frame start
+//------------------------------------------------- Manager Hub Frame start --------------------------------------------------------
 	@FXML
 	private Button logout;
 
@@ -203,10 +210,9 @@ public class Controller {
 
 	}
 
-	// Manager Hub Frame end
+//------------------------------------------------- Manager Hub Frame end --------------------------------------------------------
 
-	// Employee Management start
-
+//------------------------------------------------- Employee management Frame start --------------------------------------------------------
 	private Stage stage;
 	private Parent root;
 	private Scene scene;
@@ -334,9 +340,10 @@ public class Controller {
 		txt_phone.setText(String.valueOf(clickedEmp.getEmpPhone()));
 	}
 
-	// Employee Management end
 
-	// Vehicle Management start
+//------------------------------------------------- Employee management Frame end --------------------------------------------------------
+
+//------------------------------------------------- Vehicle management Frame start --------------------------------------------------------
 
 	@FXML
 	private TableColumn<Vehicle, Integer> col_V_ID;
@@ -493,6 +500,7 @@ public class Controller {
 		txt_VType.setText(String.valueOf(clickedV.getVehicleType()));
 	}
 
-	// Vehicle Management end
+
+//------------------------------------------------- Vehicle management Frame end --------------------------------------------------------
 }
 
