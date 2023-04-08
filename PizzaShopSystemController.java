@@ -98,14 +98,13 @@ public class PizzaShopSystemController {
 /**
 Trying not to delete anyone's work, but here is my controller class
 NOTE : Need to have employee class, vehicle class and Database connection classes in order for this class to work without any errors
-
  * Author: Bhakti Patel
  * Topic: Semester Project: PizzaShop controller class
  * Date Created: 03/01/2023
  * Last Edited: 04/07/2023
  
 */
-package application;
+//package application;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -207,6 +206,36 @@ public class Controller {
 	public void change_to_vehicle_manage(ActionEvent event) throws IOException {
 		Main m = new Main();
 		m.changeScene("VehicleManagement.fxml");
+
+	}
+	
+	@FXML
+	private Button generate_reports;
+	
+	@FXML
+	public void change_to_gen_reports(ActionEvent event) throws IOException {
+		Main m = new Main();
+		m.changeScene("GenerateReports.fxml");
+
+	}
+	
+	@FXML
+	private Button place_order;
+	
+	@FXML
+	public void change_to_place_order(ActionEvent event) throws IOException {
+		Main m = new Main();
+		m.changeScene("PlaceOrder.fxml");
+
+	}
+	
+	@FXML
+	private Button payment;
+	
+	@FXML
+	public void change_to_payment(ActionEvent event) throws IOException {
+		Main m = new Main();
+		m.changeScene("Payment.fxml");
 
 	}
 
@@ -502,5 +531,31 @@ public class Controller {
 
 
 //------------------------------------------------- Vehicle management Frame end --------------------------------------------------------
-}
+//------------------------------------------------- Place Order Frame begins ------------------------------------------------------------
+	@FXML
+	private TableColumn<Order, Integer> order_number;
 
+	@FXML
+	private TableColumn<Order, String> customer_name;
+
+	@FXML
+	private TableColumn<Order, Double> order_total;
+
+	@FXML
+	private TableColumn<Order, String> order_type;
+	
+	@FXML
+	private TableColumn<Order, String> order_date;          // in (my) DB table, this type is Date, not String
+	
+	//...
+	
+	
+	
+//------------------------------------------------- Place Order Frame end ---------------------------------------------------------------
+//------------------------------------------------- Generate Reports Frame begins -------------------------------------------------------
+	
+	//...
+	
+	
+//------------------------------------------------- Generate Reports Frame ends ---------------------------------------------------------
+}
