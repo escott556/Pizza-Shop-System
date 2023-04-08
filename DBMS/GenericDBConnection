@@ -9,34 +9,21 @@ package application;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.Scanner;
 
-import javax.swing.JOptionPane;
-
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-
-class EmployeeDatabase {
+public class DatabaseConnection {
 
 	public static Connection getConnection() {
 		try {
-			String url = "jdbc:mysql://localhost:3306/PizzaShop";     //(PizzaShop is the name of my database) 
-                                                                		  //PS: Your local host might differ
-			String username = "root"; 
-			String password = "";                           //The password you entered when installing mySQL on the system
-			Connection con = null;
+
+			Connection con;
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			con = DriverManager.getConnection(url,username,password);
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/PizzaShop", "root", "Bhakti@30");
 			System.out.println("Success");
-			JOptionPane.showMessageDialog(null, "Connection Established");
 			return con;
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, e);
 			return null;
 		}
 	}
-  }
+
+}
+
