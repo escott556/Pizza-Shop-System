@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
+   <left>
+      <Pane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: FDBC8D;" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="15.0" prefHeight="40.0" prefWidth="570.0" text="Manage Vehicle Information" textAlignment="JUSTIFY" textFill="#1e1d1d" textOverrun="CENTER_ELLIPSIS">
+               <font>
+                  <Font name="Big Caslon Medium" size="21.0" />
+               </font></Label>
+            <Button layoutX="19.0" layoutY="346.0" mnemonicParsing="false" onAction="#manager_hub" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: white;" stylesheets="@application.css" text="&lt;- Go Back" />
+            <Button layoutX="486.0" layoutY="346.0" mnemonicParsing="false" onAction="#manager_hub" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: white;" stylesheets="@application.css" text="Done" />
+            <AnchorPane layoutY="46.0" prefHeight="282.0" prefWidth="189.0" style="-fx-background-color: FDBC8D;">
+               <children>
+                  <Button layoutX="61.0" layoutY="172.0" mnemonicParsing="false" onAction="#add_vehicle" prefHeight="26.0" prefWidth="65.0" style="-fx-background-color: white;" text="Add" />
+                  <Button layoutX="61.0" layoutY="242.0" mnemonicParsing="false" onAction="#deleteVehicle" prefHeight="26.0" prefWidth="65.0" style="-fx-background-color: white;" text="Delete" />
+                  <Button layoutX="61.0" layoutY="207.0" mnemonicParsing="false" onAction="#updateVehicle" prefHeight="26.0" prefWidth="65.0" style="-fx-background-color: white;" text="Update" />
+                  <TextField fx:id="txt_emp_ID" layoutX="10.0" layoutY="57.0" prefWidth="170.0" promptText="Employee ID" />
+                  <TextField fx:id="txt_VType" layoutX="10.0" layoutY="92.0" prefWidth="170.0" promptText="Vehicle Type" />
+                  <TextField fx:id="txt_V_ID" editable="false" layoutX="10.0" layoutY="23.0" prefWidth="170.0" promptText="Vehicle ID" style="-fx-background-color: dcdcdc;">
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                  </TextField>
+               </children>
+            </AnchorPane>
+            <TableView fx:id="table_vehicle" layoutX="189.0" layoutY="45.0" onMouseClicked="#getSelectedV" prefHeight="282.0" prefWidth="411.0" style="-fx-background-color: FDBC8D;">
+              <columns>
+                <TableColumn fx:id="col_V_ID" prefWidth="102.0" text="Vehicle ID" />
+                <TableColumn fx:id="col_emp_ID" prefWidth="132.0" text="Employee ID" />
+                  <TableColumn fx:id="col_type" prefWidth="175.0" text="Vehicle Type" />
+              </columns>
+            </TableView>
+         </children>
+      </Pane>
+   </left>
+</BorderPane>
