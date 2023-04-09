@@ -58,6 +58,9 @@ public class Controller {
 			wrongLogin.setText("Logging in.");
 
 			m.changeScene("ManagerHub.fxml");
+		}else if(username.getText().toString().equals("employee") && password.getText().toString().equals("password")) {
+			wrongLogin.setText("Logging in!");
+			m.changeScene("EmployeeHub.fxml");
 		} else if (username.getText().isEmpty() && password.getText().isEmpty()) {
 			wrongLogin.setText("Enter your username and password.");
 		} else {
