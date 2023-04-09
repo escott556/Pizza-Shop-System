@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: FDBC8D;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
+   <children>
+      <BorderPane layoutX="15.0" layoutY="15.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
+         <top>
+            <Pane prefHeight="40.0" prefWidth="570.0" styleClass="paneHeader" stylesheets="@application.css" BorderPane.alignment="CENTER">
+               <children>
+                  <Text layoutX="150.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Payment Information" textAlignment="CENTER" wrappingWidth="269.336669921875">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+         </top>
+         <bottom>
+            <HBox alignment="CENTER" prefHeight="25.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#change_to_placeOrder" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: white;" stylesheets="@application.css" text="&lt;- Go Back" textAlignment="CENTER" translateX="-185.0">
+                     <styleClass>
+                        <String fx:value="buttonSmall" />
+                        <String fx:value="buttonWithText" />
+                     </styleClass>
+                  </Button>
+                  <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#manager_hub" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: white;" stylesheets="@application.css" text="Complete" textAlignment="CENTER" translateX="185.0">
+                     <styleClass>
+                        <String fx:value="buttonSmall" />
+                        <String fx:value="buttonWithText" />
+                     </styleClass>
+                  </Button>
+               </children>
+            </HBox>
+         </bottom>
+         <left>
+            <GridPane prefHeight="300.0" prefWidth="275.0" BorderPane.alignment="CENTER">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="125.0" styleClass="paneSimple" stylesheets="@application.css" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <children>
+                        <Text layoutX="9.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Order Type" textAlignment="CENTER" wrappingWidth="106.13867568969727">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="125.0" styleClass="paneSimple" stylesheets="@application.css" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <children>
+                        <Text layoutX="1.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Payment Type" textAlignment="CENTER" wrappingWidth="122.93872451782227">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <RadioButton fx:id="deliveryButton" mnemonicParsing="false" stylesheets="@application.css" text="Delivery" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="orderType" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="splitButton" mnemonicParsing="false" stylesheets="@application.css" text="Split" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="paymentType" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="inHouseButton" mnemonicParsing="false" stylesheets="@application.css" text="In-house" toggleGroup="$orderType" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <padding>
+                        <Insets left="7.0" />
+                     </padding>
+                  </RadioButton>
+                  <RadioButton fx:id="cardButton" mnemonicParsing="false" stylesheets="@application.css" text="Card" toggleGroup="$paymentType" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="takeoutButton" mnemonicParsing="false" stylesheets="@application.css" text="Takeout" toggleGroup="$orderType" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="cashButton" mnemonicParsing="false" stylesheets="@application.css" text="Cash" toggleGroup="$paymentType" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </RadioButton>
+               </children>
+               <BorderPane.margin>
+                  <Insets bottom="25.0" left="15.0" top="25.0" />
+               </BorderPane.margin>
+            </GridPane>
+         </left>
+         <right>
+            <VBox alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="250.0" spacing="20.0" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets bottom="25.0" right="25.0" top="35.0" />
+               </BorderPane.margin>
+               <children>
+                  <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="200.0" styleClass="paneSimple" stylesheets="@application.css">
+                     <children>
+                        <Text layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Order #:" textAlignment="CENTER" wrappingWidth="76.53870010375977">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="200.0" styleClass="paneSimple" stylesheets="@application.css">
+                     <children>
+                        <Text layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer:" textAlignment="CENTER" wrappingWidth="90.93872451782227">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="200.0" styleClass="paneSimple" stylesheets="@application.css">
+                     <children>
+                        <Text layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total:" textAlignment="CENTER" wrappingWidth="62.138675689697266">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+               </children>
+            </VBox>
+         </right>
+      </BorderPane>
+   </children>
+</AnchorPane>
