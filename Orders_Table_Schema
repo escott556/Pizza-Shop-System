@@ -1,0 +1,21 @@
+/* Author:               Ethan Scott
+* Date Created:          4/10/2023
+* Last Updated:          4/10/2023
+*
+* Purpose:               This is the database schema for the Orders table that is meant to store all of the orders taken. It is assumed that
+*                        this table will have orders added to it through the use of the Place Order and Payment frames, and the information
+*                        stored can be accessed or visualized through the use of the Graph Sales (Generate Reports) frame.
+*
+* Notes:
+*    -This is in SQL language. I just didn't want to import anything incorrectly, so this is like a text file.
+*    -This is a foreign key from the customer table.
+*/
+
+CREATE TABLE `orders` (
+  `Order_Number` int NOT NULL,
+  `Customer_Name` varchar(45) NOT NULL,
+  `Order_Total` double NOT NULL,
+  `Order_Type` varchar(45) NOT NULL,
+  `Order_Date` date NOT NULL,
+  PRIMARY KEY (`Order_Number`)
+)
