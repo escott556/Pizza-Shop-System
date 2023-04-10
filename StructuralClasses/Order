@@ -10,10 +10,19 @@
  *                           
  *************************************************************************************************************************/
 
-package StructuralClasses;
+package application;
 
-import java.util.Date;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Order // extends Orders?
 {
@@ -21,11 +30,11 @@ public class Order // extends Orders?
 	// Variables
 	
 	private int orderNumber;
-	private Pizza pizza;
+	private String customerName;
 	protected double orderTotal = 00.00;
 	private String orderType;
 	private Date orderDate;
-	private ArrayList<Pizza> items = new ArrayList<>();
+	private ArrayList<Pizza> items = new ArrayList<>();                     //DB doesn't care about this, just the total
 	
 	// Business-Related Variables
 	final double TAX = 0.06;
@@ -34,16 +43,20 @@ public class Order // extends Orders?
 	
 	// Constructors
 
-	public Order() {}
+	public Order() {
+		orderNumber = (int)(Math.random() * 1000);
+		orderDate = new Date();
+	}
 
-	public Order(int orderNumber, Pizza pizza, double orderTotal, String orderType, Date orderDate) 
+	public Order(int orderNumber, String customerName, double orderTotal, String orderType, Date orderDate) 
 	{
 		super();
-		this.orderNumber = orderNumber;
-		this.pizza = pizza;
+		this.orderNumber = (int)(Math.random() * 1000);
+		this.customerName = customerName;
+		//this.pizza = pizza;
 		this.orderTotal = orderTotal;
 		this.orderType = orderType;
-		this.orderDate = orderDate;
+		this.orderDate = new Date();
 		
 	}
 	
@@ -87,11 +100,11 @@ public class Order // extends Orders?
 			orderTotal += currentPizza.getCost();
 		}
 		
-		if(order.getOrderType().equals("inHouse"))             // In-house fee if needed
+		if(order.getOrderType().equals("InHouse"))             // In-house fee if needed
 		{
 			orderTotal += (orderTotal * IN_HOUSE_FEE);
 		}
-		else if(order.getOrderType().equals("delivery"))       // Delivery fee if needed
+		else if(order.getOrderType().equals("Delivery"))       // Delivery fee if needed
 		{
 			orderTotal += DELIVERY_FEE;
 		}
@@ -124,16 +137,16 @@ public class Order // extends Orders?
 		this.orderNumber = orderNumber;
 	}
 
-	// Pizza
+	// Customer Name
 	
-	public Pizza getPizza() 
+	public String getCustomerName() 
 	{
-		return pizza;
+		return customerName;
 	}
 
-	public void setPizza(Pizza pizza) 
+	public void setCustomerName(String customerName) 
 	{
-		this.pizza = pizza;
+		this.customerName = customerName;
 	}
 
 	// Order Total
@@ -155,10 +168,21 @@ public class Order // extends Orders?
 		return orderType;
 	}
 
-	public void setOrderType(String orderType) 
+	public void setOrderType(String paymentType) 
 	{
 		this.orderType = orderType;
 	}
+	
+	// Payment Type
+//	public String getPaymentType() 
+//	{
+//		return orderType;
+//	}
+//
+//	public void setPaymentType(String paymentType) 
+//	{
+//		this.paymentType = paymentType;
+//	}
 
 	// Order Date
 	
@@ -202,6 +226,31 @@ public class Order // extends Orders?
 		}
 		
 		return printList;
+	}
+	
+	// May not work
+	public static ObservableList<Order> getEmployeeInfo() {
+
+		ObservableList<Order> list = FXCollections.observableArrayList();
+		Connection con = DatabaseConnection.getConnection();
+		String sql = "select * from orders;";
+		Statement s;
+		ResultSet rs;
+		try {
+			s = con.createStatement();
+			rs = s.executeQuery(sql);
+			Order order;
+
+			while (rs.next()) {
+				order = (new Order(rs.getInt("Order_Number"), rs.getString("Customer_Name"), 
+						rs.getDouble("Order_Total"),rs.getString("Order_Type"), rs.getDate("Order_Date")));
+				list.add(order);
+			}
+			return list;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 	
 	
