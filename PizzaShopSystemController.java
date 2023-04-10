@@ -502,35 +502,44 @@ public class Controller {
 		
 	@FXML
 	private RadioButton lg_veggie;
+	
+	@FXML
+	private Button add_pizzas;
 		
 	// 1. Way to create order if needed
 	// 2. When created, use radio buttons to add objects to the database (after order is complete)
+	
+	Order order = new Order();                                               // How can this be passed between frames?
 
-	public void addOrder() {
-		
-		Order order = new Order();                                   // Initialize this!! Also, may move to change_payment
+	public void addPizzas() {
+		//order = new Order();                                   // Initialize this!! Also, may move to change_payment
 		//private double orderTotal;
 			
-		if( /* any button is selected */)
+		if(sm_cheese.isSelected() || md_cheese.isSelected() || lg_cheese.isSelected() ||
+				sm_meat.isSelected() || md_meat.isSelected() || lg_meat.isSelected() ||
+				sm_veggie.isSelected() || md_veggie.isSelected() || lg_veggie.isSelected())
 		{
 			if(sm_cheese.isSelected() || md_cheese.isSelected() || lg_cheese.isSelected())
 			{
 				// This is the case in which any button for a cheese pizza is selected
-				// An order will 
+				// An order will be created
 				if(sm_cheese.isSelected())
 				{
-					Pizza pizza = new Pizza("Cheese", "Small");      // May not work as "Small" isn't handled explicitly
+					Pizza pizza1 = new Pizza("Cheese", "Small");      // May not work as "Small" isn't handled explicitly
 					//orderTotal += 7.99;
+					order.addItem(pizza1);
 					}
 				else if(md_cheese.isSelected())
 				{
-					Pizza pizza = new Pizza("Cheese", "Medium");
+					Pizza pizza1 = new Pizza("Cheese", "Medium");
 					//orderTotal += 9.99;
+					order.addItem(pizza1);
 				}
 				else if(lg_cheese.isSelected())
 				{
-					Pizza pizza = new Pizza("Cheese", "Large");
+					Pizza pizza1 = new Pizza("Cheese", "Large");
 					//orderTotal += 11.99;
+					order.addItem(pizza1);
 				}
 			}
 			
@@ -538,18 +547,21 @@ public class Controller {
 			{
 				if(sm_meat.isSelected())
 				{
-					Pizza pizza = new Pizza("Meat", "Small");
+					Pizza pizza2 = new Pizza("Meat", "Small");
 					//orderTotal += 9.99;
+					order.addItem(pizza2);
 				}
 				else if(md_meat.isSelected())
 				{
-					Pizza pizza = new Pizza("Meat", "Medium");
+					Pizza pizza2 = new Pizza("Meat", "Medium");
 					//orderTotal += 14.99;
+					order.addItem(pizza2);
 				}
 				else if(lg_meat.isSelected())
 				{
-					Pizza pizza = new Pizza("Meat", "Large");
+					Pizza pizza2 = new Pizza("Meat", "Large");
 					//orderTotal += 19.99;
+					order.addItem(pizza2);
 				}
 			}
 			
@@ -557,20 +569,24 @@ public class Controller {
 			{
 				if(sm_veggie.isSelected())
 				{
-					Pizza pizza = new Pizza("Veggie", "Small");
+					Pizza pizza3 = new Pizza("Veggie", "Small");
 					//orderTotal += 9.99;
+					order.addItem(pizza3);
 				}
 				else if(md_veggie.isSelected())
 				{
-					Pizza pizza = new Pizza("Veggie", "Medium");
+					Pizza pizza3 = new Pizza("Veggie", "Medium");
 					//orderTotal += 14.99;
+					order.addItem(pizza3);
 				}
 				else if(lg_veggie.isSelected())
 				{
-					Pizza pizza = new Pizza("Veggie", "Large");
+					Pizza pizza3 = new Pizza("Veggie", "Large");
 					//orderTotal += 19.99;
+					order.addItem(pizza3);
 				}
 			}
+			// Pizzas should be added now
 		}
 		else /*no buttons are selected */
 		{
@@ -582,6 +598,115 @@ public class Controller {
 		
 		
 //------------------------------------------------- Place Order Frame end ---------------------------------------------------------------
+//------------------------------------------------- Payment Frame start ---------------------------------------------------------------
+
+	@FXML
+	private RadioButton ot_takeout;
+		
+	@FXML
+	private RadioButton ot_inHouse;
+		
+	@FXML
+	private RadioButton ot_delivery;
+		
+	@FXML
+	private RadioButton pt_cash;
+		
+	@FXML
+	private RadioButton pt_card;
+	
+	@FXML
+	private TextField txt_order_num;
+	
+	@FXML
+	private TextField txt_cust_name;
+	
+	@FXML
+	private TextField txt_order_total;
+	
+	@FXML
+	private Button add_order;
+	
+	// NOTE: This comes after the Place Order frame and will complete the order and send to the DB
+	
+	// Same order handled as within the Place Order frame
+	public void changeOrderType()
+	{
+		double orderTotal;
+		
+
+		if(ot_takeout.isSelected())
+		{
+			order.setOrderType("Takeout");
+		}
+		else if(ot_inHouse.isSelected())
+		{
+			order.setOrderType("InHouse");
+		}
+		else if(ot_delivery.isSelected())
+		{
+			order.setOrderType("Delivery");
+		}
+		
+		orderTotal = order.calculateTotal(order);
+		txt_order_total.setText(String.valueOf(orderTotal));                // Displays the total after order type is chosen
+		txt_order_num.setText(String.valueOf(order.getOrderTotal()));       // Should display the total to the frame
+
+	}
+	
+	public void changePaymentType()
+	{
+		if(pt_cash.isSelected() || pt_card.isSelected())
+		{
+			if(pt_card.isSelected())
+			{
+				CreditCard card = new CreditCard();
+				card.validate();                                                // Technically useless in the scale of our project.
+			}
+		}
+	}
+	
+	public void addOrderToDatabase() {                                          // Long header, may be changed
+
+		// It is assumed that the customer's name will not matter until the order is pushed into the database.
+		
+		if( (ot_takeout.isSelected() || ot_inHouse.isSelected() || ot_delivery.isSelected()) && 
+				(pt_cash.isSelected() || pt_card.isSelected()) && (!(txt_cust_name.getText().isEmpty())) )
+		{
+			// Add to database
+
+			Connection con = DatabaseConnection.getConnection();
+			String sql = "insert into employee (Order_Number, Customer_Name, Order_Total, Order_Type, Order_Date) "
+					+ "values (?,?,?,?,?);";
+			
+			try {
+				PreparedStatement ps;
+				ps = con.prepareStatement(sql);
+				ps.setString(1, String.valueOf(order.getOrderNumber()) );
+				ps.setString(2, txt_cust_name.getText() );
+				ps.setString(3, String.valueOf(order.getOrderTotal()) );
+				ps.setString(4, String.valueOf(order.getOrderType()) );
+				ps.setString(5, String.valueOf(order.getOrderDate()) );
+
+				ShowMessage("Order Placed!" + "/n" + order.printBill(order));         // Inserts into DB and prints result
+				
+				
+			}
+			catch(Exception e)
+			{
+				ShowMessage("Order failed!!!");
+			}
+			
+
+		}
+		else
+		{
+			ShowMessage("Please ensure all fields are complete!");
+		}
+
+	}
+	
+//------------------------------------------------- Payment Frame end ---------------------------------------------------------------
 //--------------------------------------------------------- Graph Frame start ------------------------------------------------------------------------
 
 	@FXML
