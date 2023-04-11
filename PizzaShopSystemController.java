@@ -510,7 +510,8 @@ public class Controller {
 	// 2. When created, use radio buttons to add objects to the database (after order is complete)
 	
 	Order order = new Order();                                               // How can this be passed between frames?
-
+	double orderTotal = order.getOrderTotal();
+	
 	public void addPizzas() {
 		//order = new Order();                                   // Initialize this!! Also, may move to change_payment
 		//private double orderTotal;
@@ -528,19 +529,25 @@ public class Controller {
 					Pizza pizza1 = new Pizza("Cheese", "Small");      // May not work as "Small" isn't handled explicitly
 					//orderTotal += 7.99;
 					order.addItem(pizza1);
+					System.out.println("Pizza 1 has been added!");
+
 					}
 				else if(md_cheese.isSelected())
 				{
 					Pizza pizza1 = new Pizza("Cheese", "Medium");
 					//orderTotal += 9.99;
 					order.addItem(pizza1);
+					System.out.println("Pizza 1 has been added!");
+
 				}
 				else if(lg_cheese.isSelected())
 				{
 					Pizza pizza1 = new Pizza("Cheese", "Large");
 					//orderTotal += 11.99;
 					order.addItem(pizza1);
+					System.out.println("Pizza 1 has been added!");
 				}
+				
 			}
 			
 			if(sm_meat.isSelected() || md_meat.isSelected() || lg_meat.isSelected())
@@ -550,18 +557,24 @@ public class Controller {
 					Pizza pizza2 = new Pizza("Meat", "Small");
 					//orderTotal += 9.99;
 					order.addItem(pizza2);
+					System.out.println("Pizza 2 has been added!");
+
 				}
 				else if(md_meat.isSelected())
 				{
 					Pizza pizza2 = new Pizza("Meat", "Medium");
 					//orderTotal += 14.99;
 					order.addItem(pizza2);
+					System.out.println("Pizza 2 has been added!");
+
 				}
 				else if(lg_meat.isSelected())
 				{
 					Pizza pizza2 = new Pizza("Meat", "Large");
 					//orderTotal += 19.99;
 					order.addItem(pizza2);
+					System.out.println("Pizza 2 has been added!");
+
 				}
 			}
 			
@@ -572,25 +585,35 @@ public class Controller {
 					Pizza pizza3 = new Pizza("Veggie", "Small");
 					//orderTotal += 9.99;
 					order.addItem(pizza3);
+					System.out.println("Pizza 3 has been added!");
+
 				}
 				else if(md_veggie.isSelected())
 				{
 					Pizza pizza3 = new Pizza("Veggie", "Medium");
 					//orderTotal += 14.99;
 					order.addItem(pizza3);
+					System.out.println("Pizza 3 has been added!");
+
 				}
 				else if(lg_veggie.isSelected())
 				{
 					Pizza pizza3 = new Pizza("Veggie", "Large");
 					//orderTotal += 19.99;
 					order.addItem(pizza3);
+					System.out.println("Pizza 3 has been added!");
+
 				}
 			}
 			// Pizzas should be added now
+			System.out.println("Pizzas have been added!");
+			System.out.println("Order total so far is " + orderTotal + ".");
+
+
 		}
 		else /*no buttons are selected */
 		{
-			ShowMessage("Order not created as no pizzas were chosen.");
+			ShowMessage("Order not created as no pizzas were chosen!");
 		}
 	}
 		
@@ -632,25 +655,35 @@ public class Controller {
 	// Same order handled as within the Place Order frame
 	public void changeOrderType()
 	{
-		double orderTotal;
+		//double orderTotal;
+		System.out.println("Order total in when type is chosen: " + orderTotal);
+
 		
 
 		if(ot_takeout.isSelected())
 		{
 			order.setOrderType("Takeout");
+			System.out.println("Set order type as takeout!");
+
 		}
 		else if(ot_inHouse.isSelected())
 		{
 			order.setOrderType("InHouse");
+			System.out.println("Set order type as in-house!");
+
 		}
 		else if(ot_delivery.isSelected())
 		{
 			order.setOrderType("Delivery");
+			System.out.println("Set order type as delivery!");
+
 		}
+		System.out.println("Order total after type is chosen: " + orderTotal);
+
 		
 		orderTotal = order.calculateTotal(order);
-		txt_order_total.setText(String.valueOf(orderTotal));                // Displays the total after order type is chosen
-		txt_order_num.setText(String.valueOf(order.getOrderTotal()));       // Should display the total to the frame
+		txt_order_total.setText(String.valueOf(order.getOrderTotal()));      // Displays the total after order type is chosen
+		txt_order_num.setText(String.valueOf(order.getOrderNumber()));       // Should display the total to the frame
 
 	}
 	
@@ -660,10 +693,14 @@ public class Controller {
 		{
 			if(pt_card.isSelected())
 			{
-				CreditCard card = new CreditCard();
-				card.validate();                                                // Technically useless in the scale of our project.
+//				CreditCard card = new CreditCard();
+//				card.validate();                                                // Technically useless in the scale of our project.
+				System.out.println("Credit card is valid!");
+
 			}
 		}
+		System.out.println("Payment chosen!");
+
 	}
 	
 	public void addOrderToDatabase() {                                          // Long header, may be changed
