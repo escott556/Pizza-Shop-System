@@ -676,7 +676,7 @@ public class Controller {
 			// Add to database
 
 			Connection con = DatabaseConnection.getConnection();
-			String sql = "insert into employee (Order_Number, Customer_Name, Order_Total, Order_Type, Order_Date) "
+			String sql = "insert into orders (Order_Number, Customer_Name, Order_Total, Order_Type, Order_Date) "
 					+ "values (?,?,?,?,?);";
 			
 			try {
