@@ -1,0 +1,17 @@
+/* Author:               Bhakti Patel
+* Date Created:          3/19/2023
+* Last Updated:          4/13/2023
+*
+* Purpose:               This is the database schema for the vehicle table that is meant to store all of the vehicle's information. 
+*
+* Notes:
+*    -This is in SQL language. 
+*/
+
+CREATE TABLE `vehicle` (
+  `vehicle_ID` int NOT NULL AUTO_INCREMENT,
+  `emp_ID` int NOT NULL,
+  `vehicle_type` varchar(30) NOT NULL,
+  PRIMARY KEY (`vehicle_ID`),
+  KEY `vehicle_ibfk_1` (`emp_ID`),
+  CONSTRAINT `vehicle_ibfk_1` FOREIGN KEY (`emp_ID`) REFERENCES `employee` (`emp_ID`)
