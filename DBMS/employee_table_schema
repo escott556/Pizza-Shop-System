@@ -1,7 +1,0 @@
-CREATE TABLE `employee` (
-  `emp_ID` int NOT NULL AUTO_INCREMENT,
-  `emp_name` varchar(30) NOT NULL,
-  `emp_add` varchar(100) NOT NULL,
-  `emp_phone` varchar(10) NOT NULL,
-  PRIMARY KEY (`emp_ID`)
-) 

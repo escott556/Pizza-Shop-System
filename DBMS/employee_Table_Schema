@@ -1,0 +1,18 @@
+/* Author:               Bhakti Patel
+* Date Created:          3/19/2023
+* Last Updated:          4/13/2023
+*
+* Purpose:               This is the database schema for the employee table that is meant to store all of the employee's information. 
+*
+* Notes:
+*    -This is in SQL language. 
+*/
+
+
+CREATE TABLE `employee` (
+  `emp_ID` int NOT NULL AUTO_INCREMENT,
+  `emp_name` varchar(30) NOT NULL,
+  `emp_add` varchar(100) NOT NULL,
+  `emp_phone` varchar(10) NOT NULL,
+  PRIMARY KEY (`emp_ID`)
+) 
