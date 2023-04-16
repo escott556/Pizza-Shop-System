@@ -1,7 +1,7 @@
 /************************************************************************************************************************
  * Author:                   Ethan Scott
  * Date Created:             3/4/2023
- * Last Edited:              3/25/2023
+ * Last Edited:              4/16/2023
  * 
  * Purpose:                  The purpose of this class is to create an instantiation of an order, as well as
  *                           keep track of all of the related information on the order, such as the total cost,
@@ -85,21 +85,39 @@ public class Order // extends Orders?
 
 	/**
 	 * This method calculates the total of the passed order. In doing so, it finds the total of all of the
+	 * pizzas within the order, then sums up all of the costs of each pizza within the order.
+	 * 
+	 * @param order - The order to be passed through.
+	 * @return      - The total cost of the order.
+	 */
+	public double calculateSubTotal(Order order)
+	{
+		orderTotal = 0;                                        // Ensures that the price does not add up incorrectly.
+		
+		for(int i = 0; i < items.size(); i++)                  // Calculates base cost before fee and tax.
+		{
+			Pizza currentPizza = items.get(i);
+			currentPizza.calculateCost(currentPizza);
+			orderTotal += currentPizza.getCost();
+			System.out.println("PASSED |  Pizza " + (i + 1) + " added with price of " + currentPizza.getCost());
+		}
+
+		return orderTotal / 1.00;
+	}
+	
+	/**
+	 * This method calculates the total of the passed order. In doing so, it finds the total of all of the
 	 * pizzas within the order, then applies an in-house or delivery fee as needed, and finally adds the tax
 	 * amount.
 	 * 
 	 * @param order - The order to be passed through.
 	 * @return      - The total cost of the order.
 	 */
-	public double calculateTotal(Order order)
+	public double calculateTotal(Order order)                  // Adds any necessary taxes and fees.
 	{
-		
-		for(int i = 0; i < items.size(); i++)                  // Calculates base cost before fee and tax.
-		{
-			Pizza currentPizza = items.get(i);
-			orderTotal += currentPizza.getCost();
-		}
-		
+		orderTotal = order.calculateSubTotal(order);
+		System.out.println("Order total now: " + orderTotal);
+	
 		if(order.getOrderType().equals("InHouse"))             // In-house fee if needed
 		{
 			orderTotal += (orderTotal * IN_HOUSE_FEE);
@@ -111,7 +129,7 @@ public class Order // extends Orders?
 		
 		orderTotal += (orderTotal * TAX);                      // Tax is added
 		
-		return orderTotal;
+		return orderTotal / 1.00;
 	}
 	
 	/**
@@ -159,6 +177,7 @@ public class Order // extends Orders?
 	public void setOrderTotal(double orderTotal) 
 	{
 		this.orderTotal = orderTotal;
+		System.out.println("Success in setting order total");
 	}
 
 	// Order Type
@@ -168,7 +187,7 @@ public class Order // extends Orders?
 		return orderType;
 	}
 
-	public void setOrderType(String paymentType) 
+	public void setOrderType(String orderType) 
 	{
 		this.orderType = orderType;
 	}
