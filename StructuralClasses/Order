@@ -102,7 +102,7 @@ public class Order // extends Orders?
 			System.out.println("PASSED |  Pizza " + (i + 1) + " added with price of " + currentPizza.getCost());
 		}
 
-		return orderTotal / 1.00;
+		return round(orderTotal,2);
 	}
 	
 	/**
@@ -129,7 +129,7 @@ public class Order // extends Orders?
 		
 		orderTotal += (orderTotal * TAX);                      // Tax is added
 		
-		return orderTotal / 1.00;
+		return round(orderTotal,2);
 	}
 	
 	/**
@@ -272,6 +272,14 @@ public class Order // extends Orders?
 		}
 	}
 	
-	
+	public static double round(double value, int places) {
+	    if (places < 0) throw new IllegalArgumentException();
+
+	    long factor = (long) Math.pow(10, places);      //assigning factor to user's decimal places and raising it to 10th power
+	    value = value * factor;                         //multiplying the value passed with the factor
+	    long tmp = Math.round(value);                   
+	    return (double) tmp / factor;                  //returning to desired number of places
+	}
+
 	
 }
