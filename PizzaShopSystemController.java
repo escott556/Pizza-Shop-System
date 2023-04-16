@@ -507,18 +507,16 @@ public class Controller {
 	private Button add_pizzas;
 		
 	// 1. Way to create order if needed
-	// 2. When created, use radio buttons to add objects to the database (after order is complete)
+
 	
 	Order order = new Order();                                               // How can this be passed between frames?
-	double orderTotal = order.getOrderTotal();
+	double orderSubTotal;                                                    // ***This will not pass from P.O. to Payment frame***
 	
 	public void addPizzas() {
-		//order = new Order();                                   // Initialize this!! Also, may move to change_payment
-		//private double orderTotal;
 			
 		if(sm_cheese.isSelected() || md_cheese.isSelected() || lg_cheese.isSelected() ||
 				sm_meat.isSelected() || md_meat.isSelected() || lg_meat.isSelected() ||
-				sm_veggie.isSelected() || md_veggie.isSelected() || lg_veggie.isSelected())
+				sm_veggie.isSelected() || md_veggie.isSelected() || lg_veggie.isSelected())   // i.e. pizzas must be selected
 		{
 			if(sm_cheese.isSelected() || md_cheese.isSelected() || lg_cheese.isSelected())
 			{
@@ -529,7 +527,9 @@ public class Controller {
 					Pizza pizza1 = new Pizza("Cheese", "Small");      // May not work as "Small" isn't handled explicitly
 					//orderTotal += 7.99;
 					order.addItem(pizza1);
-					System.out.println("Pizza 1 has been added!");
+					//order.calculateSubTotal(order);
+					order.getOrderTotal();
+					System.out.println("PASSED | Pizza 1 has been added!");
 
 					}
 				else if(md_cheese.isSelected())
@@ -537,7 +537,7 @@ public class Controller {
 					Pizza pizza1 = new Pizza("Cheese", "Medium");
 					//orderTotal += 9.99;
 					order.addItem(pizza1);
-					System.out.println("Pizza 1 has been added!");
+					System.out.println("PASSED | Pizza 1 has been added!");
 
 				}
 				else if(lg_cheese.isSelected())
@@ -545,7 +545,7 @@ public class Controller {
 					Pizza pizza1 = new Pizza("Cheese", "Large");
 					//orderTotal += 11.99;
 					order.addItem(pizza1);
-					System.out.println("Pizza 1 has been added!");
+					System.out.println("PASSED | Pizza 1 has been added!");
 				}
 				
 			}
@@ -557,7 +557,10 @@ public class Controller {
 					Pizza pizza2 = new Pizza("Meat", "Small");
 					//orderTotal += 9.99;
 					order.addItem(pizza2);
-					System.out.println("Pizza 2 has been added!");
+					//order.calculateSubTotal(order);
+					order.getOrderTotal();
+
+					System.out.println("PASSED | Pizza 2 has been added!");
 
 				}
 				else if(md_meat.isSelected())
@@ -565,7 +568,7 @@ public class Controller {
 					Pizza pizza2 = new Pizza("Meat", "Medium");
 					//orderTotal += 14.99;
 					order.addItem(pizza2);
-					System.out.println("Pizza 2 has been added!");
+					System.out.println("PASSED | Pizza 2 has been added!");
 
 				}
 				else if(lg_meat.isSelected())
@@ -573,7 +576,7 @@ public class Controller {
 					Pizza pizza2 = new Pizza("Meat", "Large");
 					//orderTotal += 19.99;
 					order.addItem(pizza2);
-					System.out.println("Pizza 2 has been added!");
+					System.out.println("PASSED | Pizza 2 has been added!");
 
 				}
 			}
@@ -585,7 +588,10 @@ public class Controller {
 					Pizza pizza3 = new Pizza("Veggie", "Small");
 					//orderTotal += 9.99;
 					order.addItem(pizza3);
-					System.out.println("Pizza 3 has been added!");
+
+					order.getOrderTotal();
+
+					System.out.println("PASSED | Pizza 3 has been added!");
 
 				}
 				else if(md_veggie.isSelected())
@@ -593,7 +599,7 @@ public class Controller {
 					Pizza pizza3 = new Pizza("Veggie", "Medium");
 					//orderTotal += 14.99;
 					order.addItem(pizza3);
-					System.out.println("Pizza 3 has been added!");
+					System.out.println("PASSED | Pizza 3 has been added!");
 
 				}
 				else if(lg_veggie.isSelected())
@@ -601,13 +607,21 @@ public class Controller {
 					Pizza pizza3 = new Pizza("Veggie", "Large");
 					//orderTotal += 19.99;
 					order.addItem(pizza3);
-					System.out.println("Pizza 3 has been added!");
+					System.out.println("PASSED | Pizza 3 has been added!");
 
 				}
 			}
+			orderSubTotal = order.calculateSubTotal(order); // Calc the price before any taxes or fees.
+			order.setOrderTotal(orderSubTotal);
+			
+			//Order orderFinal = new Order(0, null, orderSubTotal, null, null);
+			//order = orderFinal;
+
+			
 			// Pizzas should be added now
-			System.out.println("Pizzas have been added!");
-			System.out.println("Order total so far is " + orderTotal + ".");
+			System.out.println("PASSED | All pizzas have been added!");
+			System.out.println("PASSED | Order sub-total is " + orderSubTotal + ".");
+			
 
 
 		}
@@ -615,6 +629,12 @@ public class Controller {
 		{
 			ShowMessage("Order not created as no pizzas were chosen!");
 		}
+		
+		System.out.println("PASSED | After conditionals: Order sub-total is " + orderSubTotal + ".");
+		//order.orderTotal = orderSubTotal;
+		
+		// ORDER TOTAL IS NOT BEING PASSED TO THE NEXT FRAME!!!
+
 	}
 		
 
@@ -652,36 +672,52 @@ public class Controller {
 	
 	// NOTE: This comes after the Place Order frame and will complete the order and send to the DB
 	
+	// 2. When created, use radio buttons to choose the order and payment type.
+	// 3. If successful, add objects to the database (after order is complete).
+	
+	
+	
+	//double orderTotal = order.orderTotal;
+	
 	// Same order handled as within the Place Order frame
 	public void changeOrderType()
 	{
-		//double orderTotal;
-		System.out.println("Order total in when type is chosen: " + orderTotal);
-
+		double orderTotal;
+		System.out.println("Order total before type is chosen: " + order.getOrderTotal());
 		
 
 		if(ot_takeout.isSelected())
 		{
 			order.setOrderType("Takeout");
 			System.out.println("Set order type as takeout!");
+			orderTotal = order.calculateTotal(order);
+			System.out.println("Order total after type is chosen: " + orderTotal);
+
 
 		}
 		else if(ot_inHouse.isSelected())
 		{
 			order.setOrderType("InHouse");
 			System.out.println("Set order type as in-house!");
+			orderTotal = order.calculateTotal(order);
+			System.out.println("Order total after type is chosen: " + orderTotal);
+
 
 		}
 		else if(ot_delivery.isSelected())
 		{
 			order.setOrderType("Delivery");
 			System.out.println("Set order type as delivery!");
+			orderTotal = order.calculateTotal(order);
+			System.out.println("Order total after type is chosen: " + order.getOrderTotal());
+
 
 		}
-		System.out.println("Order total after type is chosen: " + orderTotal);
+		//orderTotal = order.calculateTotal(order);
+		//System.out.println("Order total after type is chosen: " + orderTotal);
 
 		
-		orderTotal = order.calculateTotal(order);
+		//orderTotal = order.calculateTotal(order);
 		txt_order_total.setText(String.valueOf(order.getOrderTotal()));      // Displays the total after order type is chosen
 		txt_order_num.setText(String.valueOf(order.getOrderNumber()));       // Should display the total to the frame
 
