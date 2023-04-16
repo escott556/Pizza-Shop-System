@@ -139,12 +139,6 @@ public class Controller {
 	}
 
 	@FXML
-	public void change_to_orderPayment(ActionEvent event) throws IOException {
-		Main m = new Main();
-		m.changeScene("OrderPayment.fxml");
-	}
-
-	@FXML
 	public void change_to_generateReports(ActionEvent event) throws IOException {
 		Main m = new Main();
 		m.changeScene("GenerateReports.fxml");
@@ -474,37 +468,64 @@ public class Controller {
 //--------------------------------------------------------- VehicleManagement Frame end ------------------------------------------------------------------------
 //------------------------------------------------- Place Order Frame begins ------------------------------------------------------------
 	
-	//...
-		
-	@FXML
-	private RadioButton sm_cheese;
-		
-	@FXML
-	private RadioButton md_cheese;
-		
-	@FXML
-	private RadioButton lg_cheese;
-		
-	@FXML
-	private RadioButton sm_meat;
-		
-	@FXML
-	private RadioButton md_meat;
-		
-	@FXML
-	private RadioButton lg_meat;
-		
-	@FXML
-	private RadioButton sm_veggie;
-		
-	@FXML
-	private RadioButton md_veggie;
-		
-	@FXML
-	private RadioButton lg_veggie;
+	
+	// Pizza-related buttons
 	
 	@FXML
-	private Button add_pizzas;
+	private ChoiceBox pizza_type = new ChoiceBox<String>();                  // Allows user to choose
+	private final ObservableList<String> pizzaTypeList = FXCollections.observableArrayList("Cheese", "Meat", "Veggie");
+
+	@FXML
+	private ChoiceBox pizza_size = new ChoiceBox<String>();                  // Allows user to choose
+	private final ObservableList<String> pizzaSizeList = FXCollections.observableArrayList("Small", "Medium", "Large");
+
+	@FXML
+	private Button add_pizza;                                               // Confirms and adds pizza
+	
+	// Order-related buttons
+	
+	@FXML
+	private ChoiceBox order_type = new ChoiceBox<String>();                  // Allows user to choose
+	private final ObservableList<String> orderTypeList = FXCollections.observableArrayList("InHouse", "Takeout", "Delivery");
+
+	@FXML
+	private ChoiceBox payment_type = new ChoiceBox<String>();                // Allows user to choose
+	private final ObservableList<String> paymentTypeList = FXCollections.observableArrayList("Cash", "Card");
+
+	@FXML
+	private TextField txt_order_num;                                         // Generate random order number
+	
+	@FXML
+	private TextField txt_cust_name;                                         // Allows user to input name
+	
+	// Total display
+	
+	@FXML
+	private TextField txt_order_total;                                       // Displays total after options chosen
+	
+	/**
+	 * Initializes the choices boxes on the Place Order frame.
+	 */
+	@Override
+	public void initialize(URL url, ResourceBundle rb)
+	{
+		// List all of the items for each choice box
+		
+		//pizza_type.setValue("Cheese");
+		pizza_type.setItems(pizzaTypeList);
+		
+		//pizza_size.setValue("Small");
+		pizza_size.setItems(pizzaSizeList);
+
+		
+		//order_type.setValue("InHouse");
+		order_type.setItems(orderTypeList);
+		
+		//payment_type.setValue("Cash");
+		payment_type.setItems(paymentTypeList);
+		
+	}
+
 		
 	// 1. Way to create order if needed
 
@@ -512,274 +533,165 @@ public class Controller {
 	Order order = new Order();                                               // How can this be passed between frames?
 	double orderSubTotal;                                                    // ***This will not pass from P.O. to Payment frame***
 	
-	public void addPizzas() {
-			
-		if(sm_cheese.isSelected() || md_cheese.isSelected() || lg_cheese.isSelected() ||
-				sm_meat.isSelected() || md_meat.isSelected() || lg_meat.isSelected() ||
-				sm_veggie.isSelected() || md_veggie.isSelected() || lg_veggie.isSelected())   // i.e. pizzas must be selected
+	
+	/**
+	 * This method adds the pizzas based on the options selected, but also handles the information related to the
+	 * order as well (i.e. Order Number, Order Type, etc.).
+	 * 
+	 * NOTE: Though is is named "addPizza", this method will throw an error message if any drop-boxes are incomplete.
+	 */
+	public void addPizza() {
+		
+		// Pizza handling
+		
+		if(pizza_type.getValue() != null && pizza_size.getValue() != null && order_type.getValue() != null
+				&& payment_type.getValue() != null)   // i.e. pizza type and size must be selected
 		{
-			if(sm_cheese.isSelected() || md_cheese.isSelected() || lg_cheese.isSelected())
+			
+			if(pizza_type.getValue() == "Cheese")
 			{
-				// This is the case in which any button for a cheese pizza is selected
-				// An order will be created
-				if(sm_cheese.isSelected())
-				{
-					Pizza pizza1 = new Pizza("Cheese", "Small");      // May not work as "Small" isn't handled explicitly
-					//orderTotal += 7.99;
-					order.addItem(pizza1);
-					//order.calculateSubTotal(order);
-					order.getOrderTotal();
-					System.out.println("PASSED | Pizza 1 has been added!");
-
-					}
-				else if(md_cheese.isSelected())
-				{
-					Pizza pizza1 = new Pizza("Cheese", "Medium");
-					//orderTotal += 9.99;
-					order.addItem(pizza1);
-					System.out.println("PASSED | Pizza 1 has been added!");
-
-				}
-				else if(lg_cheese.isSelected())
-				{
-					Pizza pizza1 = new Pizza("Cheese", "Large");
-					//orderTotal += 11.99;
-					order.addItem(pizza1);
-					System.out.println("PASSED | Pizza 1 has been added!");
-				}
 				
+				if(pizza_size.getValue() == "Small")
+				{
+					Pizza pizza = new Pizza("Cheese", "Small");                    // Price: 7.99
+					order.addItem(pizza);
+					System.out.println("Pizza added!");
+				}
+				if(pizza_size.getValue() == "Medium")
+				{
+					Pizza pizza = new Pizza("Cheese", "Medium");                   // Price: 9.99
+					order.addItem(pizza);
+					System.out.println("Pizza added!");
+				}
+				if(pizza_size.getValue() == "Large")
+				{
+					Pizza pizza = new Pizza("Cheese", "Large");                    // Price: 11.99
+					order.addItem(pizza);
+					System.out.println("Pizza added!");
+				}
+			
 			}
 			
-			if(sm_meat.isSelected() || md_meat.isSelected() || lg_meat.isSelected())
+			if(pizza_type.getValue() == "Meat")
 			{
-				if(sm_meat.isSelected())
+				if(pizza_size.getValue() == "Small")
 				{
-					Pizza pizza2 = new Pizza("Meat", "Small");
-					//orderTotal += 9.99;
-					order.addItem(pizza2);
-					//order.calculateSubTotal(order);
-					order.getOrderTotal();
-
-					System.out.println("PASSED | Pizza 2 has been added!");
-
+					Pizza pizza = new Pizza("Meat", "Small");                      // Price: 9.99
+					order.addItem(pizza);
+					System.out.println("Pizza added!");
 				}
-				else if(md_meat.isSelected())
+				if(pizza_size.getValue() == "Medium")
 				{
-					Pizza pizza2 = new Pizza("Meat", "Medium");
-					//orderTotal += 14.99;
-					order.addItem(pizza2);
-					System.out.println("PASSED | Pizza 2 has been added!");
-
+					Pizza pizza = new Pizza("Meat", "Medium");                     // Price: 14.99
+					order.addItem(pizza);
+					System.out.println("Pizza added!");
 				}
-				else if(lg_meat.isSelected())
+				if(pizza_size.getValue() == "Large")
 				{
-					Pizza pizza2 = new Pizza("Meat", "Large");
-					//orderTotal += 19.99;
-					order.addItem(pizza2);
-					System.out.println("PASSED | Pizza 2 has been added!");
-
+					Pizza pizza = new Pizza("Meat", "Large");                      // Price: 19.99
+					order.addItem(pizza);
+					System.out.println("Pizza added!");
 				}
-			}
 			
-			if(sm_veggie.isSelected() || md_veggie.isSelected() || lg_veggie.isSelected())
+			}
+			if(pizza_type.getValue() == "Veggie")
 			{
-				if(sm_veggie.isSelected())
+				if(pizza_size.getValue() == "Small")
 				{
-					Pizza pizza3 = new Pizza("Veggie", "Small");
-					//orderTotal += 9.99;
-					order.addItem(pizza3);
-
-					order.getOrderTotal();
-
-					System.out.println("PASSED | Pizza 3 has been added!");
-
+					Pizza pizza = new Pizza("Veggie", "Small");                    // Price: 9.99
+					order.addItem(pizza);
+					System.out.println("Pizza added!");
 				}
-				else if(md_veggie.isSelected())
+				if(pizza_size.getValue() == "Medium")
 				{
-					Pizza pizza3 = new Pizza("Veggie", "Medium");
-					//orderTotal += 14.99;
-					order.addItem(pizza3);
-					System.out.println("PASSED | Pizza 3 has been added!");
-
+					Pizza pizza = new Pizza("Veggie", "Medium");                   // Price: 14.99
+					order.addItem(pizza);
+					System.out.println("Pizza added!");
 				}
-				else if(lg_veggie.isSelected())
+				if(pizza_size.getValue() == "Large")
 				{
-					Pizza pizza3 = new Pizza("Veggie", "Large");
-					//orderTotal += 19.99;
-					order.addItem(pizza3);
-					System.out.println("PASSED | Pizza 3 has been added!");
-
+					Pizza pizza = new Pizza("Veggie", "Large");                    // Price: 19.99
+					order.addItem(pizza);
+					System.out.println("Pizza added!");
 				}
+			
 			}
-			orderSubTotal = order.calculateSubTotal(order); // Calc the price before any taxes or fees.
-			order.setOrderTotal(orderSubTotal);
 			
-			//Order orderFinal = new Order(0, null, orderSubTotal, null, null);
-			//order = orderFinal;
-
+			// Order handling (Order Type and added fees)
 			
-			// Pizzas should be added now
-			System.out.println("PASSED | All pizzas have been added!");
-			System.out.println("PASSED | Order sub-total is " + orderSubTotal + ".");
-			
-
-
+			if(order_type.getValue() == "InHouse")
+			{
+				order.setOrderType("Takeout");
+				System.out.println("Set order type as takeout!");
+				order.calculateTotal(order);
+				System.out.println("Order total after type is chosen: " + order.getOrderTotal());
+	
+	
+			}
+			else if(order_type.getValue() == "Takeout")
+			{
+				order.setOrderType("InHouse");
+				System.out.println("Set order type as in-house! %5 Fee Added!");
+				order.calculateTotal(order);
+				System.out.println("Order total after type is chosen: " + order.getOrderTotal());
+	
+	
+			}
+			else if(order_type.getValue() == "Delivery")
+			{
+				order.setOrderType("Delivery");
+				System.out.println("Set order type as delivery! $3.00 Fee Added!");
+				order.calculateTotal(order);
+				System.out.println("Order total after type is chosen: " + order.getOrderTotal());
+	
+	
+			}
 		}
-		else /*no buttons are selected */
+
+		else /* Drop box fields are incomplete. */
 		{
-			ShowMessage("Order not created as no pizzas were chosen!");
+			ShowMessage("All fields not complete!");
 		}
 		
-		System.out.println("PASSED | After conditionals: Order sub-total is " + orderSubTotal + ".");
-		//order.orderTotal = orderSubTotal;
-		
-		// ORDER TOTAL IS NOT BEING PASSED TO THE NEXT FRAME!!!
+		order.calculateSubTotal(order);                                      // Total after taxes and fees
 
+		order.setOrderTotal(order.calculateTotal(order));                    // Sets the total as what was calculated.
+		
+		System.out.println("PASSED | Order sub-total is: $" + order.getOrderTotal() + ".");       // Testing message
+		
+		
+		
+		// Printing order information to the user after fields complete...
+		
+		txt_order_total.setText(String.valueOf(order.getOrderTotal()));      // Displays the total after order type is chosen
+		
+		order.setOrderNumber(order.getOrderNumber());
+		txt_order_num.setText(String.valueOf(order.getOrderNumber()));       // Should display the total to the frame
+		
+	}
+	
+	/**
+	 * This method will add the order to the database.
+	 */
+	public void completeOrder()
+	{
+		if( (order_type.getValue() != null) && (payment_type.getValue() != null) && (!txt_order_num.getText().isEmpty()) 
+				&& (!txt_cust_name.getText().isEmpty()) && (!txt_order_total.getText().isEmpty()))
+		{
+			//... Add order to DB
+			
+			
+		}
+		else
+		{
+			ShowMessage("Cannot process request.");
+		}
 	}
 		
 
 		
 		
 //------------------------------------------------- Place Order Frame end ---------------------------------------------------------------
-//------------------------------------------------- Payment Frame start ---------------------------------------------------------------
-
-	@FXML
-	private RadioButton ot_takeout;
-		
-	@FXML
-	private RadioButton ot_inHouse;
-		
-	@FXML
-	private RadioButton ot_delivery;
-		
-	@FXML
-	private RadioButton pt_cash;
-		
-	@FXML
-	private RadioButton pt_card;
-	
-	@FXML
-	private TextField txt_order_num;
-	
-	@FXML
-	private TextField txt_cust_name;
-	
-	@FXML
-	private TextField txt_order_total;
-	
-	@FXML
-	private Button add_order;
-	
-	// NOTE: This comes after the Place Order frame and will complete the order and send to the DB
-	
-	// 2. When created, use radio buttons to choose the order and payment type.
-	// 3. If successful, add objects to the database (after order is complete).
-	
-	
-	
-	//double orderTotal = order.orderTotal;
-	
-	// Same order handled as within the Place Order frame
-	public void changeOrderType()
-	{
-		double orderTotal;
-		System.out.println("Order total before type is chosen: " + order.getOrderTotal());
-		
-
-		if(ot_takeout.isSelected())
-		{
-			order.setOrderType("Takeout");
-			System.out.println("Set order type as takeout!");
-			orderTotal = order.calculateTotal(order);
-			System.out.println("Order total after type is chosen: " + orderTotal);
-
-
-		}
-		else if(ot_inHouse.isSelected())
-		{
-			order.setOrderType("InHouse");
-			System.out.println("Set order type as in-house!");
-			orderTotal = order.calculateTotal(order);
-			System.out.println("Order total after type is chosen: " + orderTotal);
-
-
-		}
-		else if(ot_delivery.isSelected())
-		{
-			order.setOrderType("Delivery");
-			System.out.println("Set order type as delivery!");
-			orderTotal = order.calculateTotal(order);
-			System.out.println("Order total after type is chosen: " + order.getOrderTotal());
-
-
-		}
-		//orderTotal = order.calculateTotal(order);
-		//System.out.println("Order total after type is chosen: " + orderTotal);
-
-		
-		//orderTotal = order.calculateTotal(order);
-		txt_order_total.setText(String.valueOf(order.getOrderTotal()));      // Displays the total after order type is chosen
-		txt_order_num.setText(String.valueOf(order.getOrderNumber()));       // Should display the total to the frame
-
-	}
-	
-	public void changePaymentType()
-	{
-		if(pt_cash.isSelected() || pt_card.isSelected())
-		{
-			if(pt_card.isSelected())
-			{
-//				CreditCard card = new CreditCard();
-//				card.validate();                                                // Technically useless in the scale of our project.
-				System.out.println("Credit card is valid!");
-
-			}
-		}
-		System.out.println("Payment chosen!");
-
-	}
-	
-	public void addOrderToDatabase() {                                          // Long header, may be changed
-
-		// It is assumed that the customer's name will not matter until the order is pushed into the database.
-		
-		if( (ot_takeout.isSelected() || ot_inHouse.isSelected() || ot_delivery.isSelected()) && 
-				(pt_cash.isSelected() || pt_card.isSelected()) && (!(txt_cust_name.getText().isEmpty())) )
-		{
-			// Add to database
-
-			Connection con = DatabaseConnection.getConnection();
-			String sql = "insert into orders (Order_Number, Customer_Name, Order_Total, Order_Type, Order_Date) "
-					+ "values (?,?,?,?,?);";
-			
-			try {
-				PreparedStatement ps;
-				ps = con.prepareStatement(sql);
-				ps.setString(1, String.valueOf(order.getOrderNumber()) );
-				ps.setString(2, txt_cust_name.getText() );
-				ps.setString(3, String.valueOf(order.getOrderTotal()) );
-				ps.setString(4, String.valueOf(order.getOrderType()) );
-				ps.setString(5, String.valueOf(order.getOrderDate()) );
-
-				ShowMessage("Order Placed!" + "/n" + order.printBill(order));         // Inserts into DB and prints result
-				
-				
-			}
-			catch(Exception e)
-			{
-				ShowMessage("Order failed!!!");
-			}
-			
-
-		}
-		else
-		{
-			ShowMessage("Please ensure all fields are complete!");
-		}
-
-	}
-	
-//------------------------------------------------- Payment Frame end ---------------------------------------------------------------
 //--------------------------------------------------------- Graph Frame start ------------------------------------------------------------------------
 
 	@FXML
