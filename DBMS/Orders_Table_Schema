@@ -16,6 +16,6 @@ CREATE TABLE `orders` (
   `Customer_Name` varchar(45) NOT NULL,
   `Order_Total` double NOT NULL,
   `Order_Type` varchar(45) NOT NULL,
-  `Order_Date` date NOT NULL,
+  `Order_Date` varchar(45) NOT NULL,
   PRIMARY KEY (`Order_Number`)
 )
