@@ -678,13 +678,65 @@ public class Controller {
 		if( (order_type.getValue() != null) && (payment_type.getValue() != null) && (!txt_order_num.getText().isEmpty()) 
 				&& (!txt_cust_name.getText().isEmpty()) && (!txt_order_total.getText().isEmpty()))
 		{
-			//... Add order to DB
+			System.out.println("PASSED | Input validation layer 1");
 			
+			Date orderDate = new Date();
+			//... Add order to DB
+
+			Connection con = DatabaseConnection.getConnection();
+			String sql = "insert into orders (Order_Number, Customer_Name, Order_Total, Order_Type, Order_Date) "
+					+ "values (?,?,?,?,?);";
+			try {
+				PreparedStatement ps;
+				ps = con.prepareStatement(sql);
+				ps.setString(1, txt_order_num.getText());
+				ps.setString(2, txt_cust_name.getText());
+				ps.setString(3, txt_order_total.getText());
+				ps.setString(4, String.valueOf(order_type));                           // Does this work?
+				ps.setString(5, String.valueOf(orderDate));
+
+				System.out.println("PASSED | Inside try block");
+
+				
+				// Input validation, may be unreachable.
+				if (txt_order_num.getText().isEmpty() || txt_cust_name.getText().isEmpty() || txt_order_total.getText().isEmpty()) 
+				{
+					
+					if (txt_order_num.getText().isEmpty()) 
+					{
+						ShowMessage("Order number invalid! Please check inputs.");
+					} 
+					else if (txt_cust_name.getText().isEmpty()) 
+					{
+						ShowMessage("Please insert a customer name!");
+					} 
+					else if (txt_order_total.getText().isEmpty()) 
+					{
+						ShowMessage("Order total invlaid! Please check inputs.");
+					} 
+					else if (String.valueOf(order_type).isEmpty()) 
+					{
+						ShowMessage("Order type invalid! Please check inputs.");
+					}
+					
+				} 
+				
+				else 
+				{
+					ps.execute();
+					ShowMessage("Order added successfully!");
+				}
+
+			} 
+			catch (Exception e) 
+			{
+				ShowMessage("Cannot process request. Please check inuts and try again.");
+			}
 			
 		}
 		else
 		{
-			ShowMessage("Cannot process request.");
+			ShowMessage("Cannot process request. Please check inputs and try again.");
 		}
 	}
 		
