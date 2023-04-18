@@ -13,6 +13,7 @@ public class TimeController {
 	@FXML
     public Text clockText;
 
+	/* Starts the clock and will call updateClock to continue updating the time. */
     public void initialize() {
         updateClock();
         new Thread(() -> {
@@ -27,7 +28,7 @@ public class TimeController {
         }).start();
     }
     
-    //Real-time clock tracking
+    //Formatting for the real-time clock to format in hours:minutes:seconds.
     private void updateClock() {
         LocalTime currentTime = LocalTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm:ss a");
@@ -35,7 +36,7 @@ public class TimeController {
         clockText.setText(formattedTime);
     }
     
-    /* This is for clock-in button reaction */
+    /* This is for clock-in button reaction, ClockIntime for outputting the time the employee clocks in. */
     @FXML
     public Label ClockInResult;
 
@@ -47,7 +48,7 @@ public class TimeController {
         ClockInResult.setText("You clocked in at: " + formattedTime);
     }
     
-    /* This is for clock-out button reaction */
+    /* This is for clock-out button reaction, ClockOutTime for outputting the time the employee clocks out. */
     @FXML
     public Label ClockOutResult;
 
