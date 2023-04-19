@@ -19,13 +19,10 @@ public class GraphController {
 	/* All Graph data entries below */
 	@FXML
 	public void GrandTotal(ActionEvent actionEvent) { //Grand total graph data
-		Axis<String> xAxis = lineChart.getXAxis();
-		xAxis.setLabel("Month");
-		
-		Axis<Number> yAxis = lineChart.getYAxis();
-		yAxis.setLabel("Revenue");
 		
 		XYChart.Series<String, Number> series = new XYChart.Series<String, Number>(); //Create the series for data to be implemented.
+		series.setName("Grand Total"); //Sets the name for the series for it to display in the legend
+		
 		// Full data series for the GrandTotal type
 		series.getData().add(new XYChart.Data<>("Jan", 0));
 		series.getData().add(new XYChart.Data<>("Feb", 20));
@@ -40,21 +37,16 @@ public class GraphController {
 		series.getData().add(new XYChart.Data<>("Nov", 200));
 		series.getData().add(new XYChart.Data<>("Dec", 220));
 		
-		
 		//adding series to lineChart
 		lineChart.getData().add(series);
 		
-	}
-	
+	}	
 	@FXML
 	public void InHouse(ActionEvent actionEvent) { //In-house graph data
-		Axis<String> xAxis = lineChart.getXAxis();
-		xAxis.setLabel("Month");
-		
-		Axis<Number> yAxis = lineChart.getYAxis();
-		yAxis.setLabel("Revenue");
 		
 		XYChart.Series<String, Number> series = new XYChart.Series<String, Number>(); //Create the series for data to be implemented.
+		series.setName("In-house"); //Sets the name for the series for it to display in the legend
+		
 		// Full data series for the InHouse type
 		series.getData().add(new XYChart.Data<>("Jan", 0));
 		series.getData().add(new XYChart.Data<>("Feb", 60));
@@ -69,20 +61,16 @@ public class GraphController {
 		series.getData().add(new XYChart.Data<>("Nov", 546));
 		series.getData().add(new XYChart.Data<>("Dec", 375));
 		
-		
 		//adding series to lineChart
 		lineChart.getData().add(series);
 		
 	}
 	@FXML
 	public void Takeout(ActionEvent actionEvent) { //Take-out graph data
-		Axis<String> xAxis = lineChart.getXAxis();
-		xAxis.setLabel("Month");
-		
-		Axis<Number> yAxis = lineChart.getYAxis();
-		yAxis.setLabel("Revenue");
-		
+	
 		XYChart.Series<String, Number> series = new XYChart.Series<String, Number>(); //Create the series for data to be implemented.
+		series.setName("Takeout"); //Sets the name for the series for it to display in the legend
+		
 		// Full data series for the Takeout type
 		series.getData().add(new XYChart.Data<>("Jan", 0));
 		series.getData().add(new XYChart.Data<>("Feb", 20));
@@ -97,20 +85,16 @@ public class GraphController {
 		series.getData().add(new XYChart.Data<>("Nov", 200));
 		series.getData().add(new XYChart.Data<>("Dec", 220));
 		
-		
 		//adding series to lineChart
 		lineChart.getData().add(series);
 		
 	}
 	@FXML
 	public void Delivery(ActionEvent actionEvent) { //Delivery graph data
-		Axis<String> xAxis = lineChart.getXAxis();
-		xAxis.setLabel("Month");
-		
-		Axis<Number> yAxis = lineChart.getYAxis();
-		yAxis.setLabel("Revenue");
 		
 		XYChart.Series<String, Number> series = new XYChart.Series<String, Number>(); //Create the series for data to be implemented.
+		series.setName("Delivery"); //Sets the name for the series for it to display in the legend
+		
 		// Full data series for the Delivery type
 		series.getData().add(new XYChart.Data<>("Jan", 0));
 		series.getData().add(new XYChart.Data<>("Feb", 20));
@@ -125,10 +109,14 @@ public class GraphController {
 		series.getData().add(new XYChart.Data<>("Nov", 200));
 		series.getData().add(new XYChart.Data<>("Dec", 220));
 		
-		
 		//adding series to lineChart
 		lineChart.getData().add(series);
 		
+	}
+	
+	@FXML
+	public void clearData() { //for clearing data on the graph
+		lineChart.getData().clear();
 	}
 	
 }
