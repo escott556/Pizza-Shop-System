@@ -532,104 +532,123 @@ public class Controller {
 	 */
 	public void addPizza() 
 	{
-		
-		// Pizza handling based on type and size
-		
-		if(pizza_type.getValue() != null && pizza_size.getValue() != null && order_type.getValue() != null
-				&& payment_type.getValue() != null)                                // Input validation for pizza info.
+		// Pizza handling
+
+		if (pizza_type.getValue() != null && pizza_size.getValue() != null && order_type.getValue() != null
+				&& payment_type.getValue() != null) // i.e. pizza type and size must be selected
 		{
-			
-			if(pizza_type.getValue() == "Cheese")                                  // Cheese pizzas
-			{
-				if(pizza_size.getValue() == "Small")
-				{
-					Pizza pizza = new Pizza("Cheese", "Small");                    // Price: +7.99
+
+			if (pizza_type.getValue() == "Cheese") {
+
+				if (pizza_size.getValue() == "Small") {
+					Pizza pizza = new Pizza("Cheese", "Small"); // Price: 7.99
 					order.addItem(pizza);
+					txtorder.appendText("\nOrder No: " + order.getOrderNumber() + "\nSmall Cheese Pizza Added!"
+							+ "\nPrice $7.99 + tax");
+					
 				}
-				if(pizza_size.getValue() == "Medium")
-				{
-					Pizza pizza = new Pizza("Cheese", "Medium");                   // Price: +9.99
+				if (pizza_size.getValue() == "Medium") {
+					Pizza pizza = new Pizza("Cheese", "Medium"); // Price: 9.99
 					order.addItem(pizza);
+					txtorder.appendText("\nOrder No: " + order.getOrderNumber() + "\nMedium Cheese Pizza Added!"
+							+ "\nPrice $9.99 + tax");
+					
 				}
-				if(pizza_size.getValue() == "Large")
-				{
-					Pizza pizza = new Pizza("Cheese", "Large");                    // Price: +11.99
+				if (pizza_size.getValue() == "Large") {
+					Pizza pizza = new Pizza("Cheese", "Large"); // Price: 11.99
 					order.addItem(pizza);
+					txtorder.appendText("\nOrder No: " + order.getOrderNumber() + "\nLarge Cheese Pizza Added!"
+							+ "\nPrice $11.99 + tax");
+					
 				}
+
 			}
-			
-			if(pizza_type.getValue() == "Meat")                                    // Meat pizzas
-			{
-				if(pizza_size.getValue() == "Small")
-				{
-					Pizza pizza = new Pizza("Meat", "Small");                      // Price: +9.99
+
+			if (pizza_type.getValue() == "Meat") {
+				if (pizza_size.getValue() == "Small") {
+					Pizza pizza = new Pizza("Meat", "Small"); // Price: 9.99
 					order.addItem(pizza);
+					txtorder.appendText("\nOrder No: " + order.getOrderNumber() + "\nSmall Meat Pizza Added!"
+							+ "\nPrice $9.99 + tax");
+					
 				}
-				if(pizza_size.getValue() == "Medium")
-				{
-					Pizza pizza = new Pizza("Meat", "Medium");                     // Price: +14.99
+				if (pizza_size.getValue() == "Medium") {
+					Pizza pizza = new Pizza("Meat", "Medium"); // Price: 14.99
 					order.addItem(pizza);
+					txtorder.appendText("\nOrder No: " + order.getOrderNumber() + "\nMedium Meat Pizza Added!"
+							+ "\nPrice $14.99 + tax");
+					
 				}
-				if(pizza_size.getValue() == "Large")
-				{
-					Pizza pizza = new Pizza("Meat", "Large");                      // Price: +19.99
+				if (pizza_size.getValue() == "Large") {
+					Pizza pizza = new Pizza("Meat", "Large"); // Price: 19.99
 					order.addItem(pizza);
+					txtorder.appendText("\nOrder No: " + order.getOrderNumber() + "\nLarge Meat Pizza Added!"
+							+ "\nPrice $19.99 + tax");
+					
 				}
+
 			}
-			if(pizza_type.getValue() == "Veggie")                                  // Veggie pizzas
-			{
-				if(pizza_size.getValue() == "Small")
-				{
-					Pizza pizza = new Pizza("Veggie", "Small");                    // Price: +9.99
+			if (pizza_type.getValue() == "Veggie") {
+				if (pizza_size.getValue() == "Small") {
+					Pizza pizza = new Pizza("Veggie", "Small"); // Price: 9.99
 					order.addItem(pizza);
+					txtorder.appendText("\nOrder No: " + order.getOrderNumber() + "\nSmall Veggie Pizza Added!"
+							+ "\nPrice $9.99 + tax");
+					
 				}
-				if(pizza_size.getValue() == "Medium")
-				{
-					Pizza pizza = new Pizza("Veggie", "Medium");                   // Price: +14.99
+				if (pizza_size.getValue() == "Medium") {
+					Pizza pizza = new Pizza("Veggie", "Medium"); // Price: 14.99
 					order.addItem(pizza);
+					txtorder.appendText("\nOrder No: " + order.getOrderNumber() + "\nMedium Veggie Pizza Added!"
+							+ "\nPrice $14.99 + tax");
+					
 				}
-				if(pizza_size.getValue() == "Large")
-				{
-					Pizza pizza = new Pizza("Veggie", "Large");                    // Price: +19.99
+				if (pizza_size.getValue() == "Large") {
+					Pizza pizza = new Pizza("Veggie", "Large"); // Price: 19.99
 					order.addItem(pizza);
+					txtorder.appendText("\n\nOrder No: " + order.getOrderNumber() + "\nLarge Veggie Pizza Added!"
+							+ "\nPrice $19.99 + tax");
+					
 				}
+
 			}
-			
-			
-			// Order handling (Service Type and added fees based on said type)
-			
-			if(order_type.getValue() == "InHouse")
-			{
-				order.setOrderType("Takeout");
-				order.calculateTotal(order);
-			}
-			else if(order_type.getValue() == "Takeout")
-			{
+
+			// Order handling (Order Type and added fees)
+
+			if (order_type.getValue() == "InHouse") {
 				order.setOrderType("InHouse");
 				order.calculateTotal(order);
-			}
-			else if(order_type.getValue() == "Delivery")
-			{
-				order.setOrderType("Delivery");
+				txtorder.appendText("\nService: InHouse");
+
+			} else if (order_type.getValue() == "Takeout") {
+				order.setOrderType("Takeout");
+				// System.out.println("Set order type as in-house! %5 Fee Added!");
 				order.calculateTotal(order);
-			}
+				txtorder.appendText("\nService: Takeout");
 			
+			} else if (order_type.getValue() == "Delivery") {
+				order.setOrderType("Service: Delivery");
+				// System.out.println("Set order type as delivery! $3.00 Fee Added!");
+				order.calculateTotal(order);
+				txtorder.appendText("\nDelivery");
+				
+			}
 		}
 
-		else                                                                 // Choice Boxes are not complete, Inp. Val.
+		else /* Drop box fields are incomplete. */
 		{
 			ShowMessage("All fields not complete!");
 		}
-		
-		order.calculateSubTotal(order);                                      // Total after taxes and fees
-		order.setOrderTotal(order.calculateTotal(order));                    // Sets the total as calculated sub-total.
-		
-		// Printing order information to the user after fields complete...
-		
-		txt_order_total.setText(String.valueOf(order.getOrderTotal()));      // Displays the total after order type is chosen
-		order.setOrderNumber(order.getOrderNumber());                        // Displays the randomly-generated order number
-		txt_order_num.setText(String.valueOf(order.getOrderNumber()));       // Should display the total to the frame
-		
+
+		order.calculateSubTotal(order); // Total after taxes and fees
+
+		order.setOrderTotal(order.calculateTotal(order)); // Sets the total as what was calculated.
+
+		txt_order_total.setText(String.valueOf(order.getOrderTotal())); // Displays the total after order type is chosen
+		txtorder.appendText("\nOrder Total: " + order.getOrderTotal() + "\n");
+		order.setOrderNumber(order.getOrderNumber());
+		txt_order_num.setText(String.valueOf(order.getOrderNumber())); // Should display the total to the frame
+
 	}
 	
 	/**
