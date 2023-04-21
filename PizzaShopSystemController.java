@@ -501,6 +501,9 @@ public class Controller {
 	@FXML
 	private TextField txt_order_total;	                                       // Text box for order total
 	
+	@FXML
+	private TextArea txtorder;                                                     // for printing the current orders
+	
 	
 	/**
 	 * Method to initializee all of the choices boxes on the Place Order frame.
