@@ -660,67 +660,58 @@ public class Controller {
 	 */
 	public void completeOrder()
 	{
-		if( (order_type.getValue() != null) && (payment_type.getValue() != null) && (!txt_order_num.getText().isEmpty()) 
-				&& (!txt_cust_name.getText().isEmpty()) && (!txt_order_total.getText().isEmpty()))    // Inp. Val.
+		Date today = new Date(); // Create a current date to use.
+		SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
+        String orderDate = DATE_FORMAT.format(today);
+
+		// Start of adding order to DB
+		Connection con = DatabaseConnection.getConnection();
+		String sql = "insert into orders (Order_Number, Customer_Name, Order_Total, Order_Type, Order_Date) "
+				+ "values (?,?,?,?,?);";
+		if ((order_type.getValue() != null) && (payment_type.getValue() != null) && (!txt_order_num.getText().isEmpty())
+				&& (!txt_cust_name.getText().isEmpty()) && (!txt_order_total.getText().isEmpty())) // Inp. Val.
 		{
-			Date orderDate = new Date();                                                 // Create a current date to use.
-			
-			// Start of adding order to DB
-			Connection con = DatabaseConnection.getConnection();
-			String sql = "insert into orders (Order_Number, Customer_Name, Order_Total, Order_Type, Order_Date) "
-					+ "values (?,?,?,?,?);";
+
 			try {
 				PreparedStatement ps;
 				ps = con.prepareStatement(sql);
-				ps.setString(1, txt_order_num.getText());                                // Column 1 info
-				ps.setString(2, txt_cust_name.getText());                                // Column 2 info
-				ps.setString(3, txt_order_total.getText());                              // Column 3 info
-				ps.setString(4, String.valueOf(order_type));                             // Column 4 info
-				ps.setString(5, String.valueOf(orderDate));                              // Column 5 info
+				ps.setString(1, txt_order_num.getText()); // Column 1 info
+				ps.setString(2, txt_cust_name.getText()); // Column 2 info
+				ps.setString(3, txt_order_total.getText()); // Column 3 info
+				ps.setString(4, (String) order_type.getValue()); // Column 4 info
+				ps.setString(5, orderDate); // Column 5 info
 
-				
 				// Added layer of input validation.
-				if (txt_order_num.getText().isEmpty() || txt_cust_name.getText().isEmpty() || txt_order_total.getText().isEmpty()) 
-				{
-		
-					if (txt_order_num.getText().isEmpty()) 
-					{
+				if (txt_order_num.getText().isEmpty() || txt_cust_name.getText().isEmpty()
+						|| txt_order_total.getText().isEmpty()) {
+
+					if (txt_order_num.getText().isEmpty()) {
 						ShowMessage("Order number invalid! Please check inputs.");
-					} 
-					else if (txt_cust_name.getText().isEmpty()) 
-					{
+					} else if (txt_cust_name.getText().isEmpty()) {
 						ShowMessage("Please insert a customer name!");
-					} 
-					else if (txt_order_total.getText().isEmpty()) 
-					{
+					} else if (txt_order_total.getText().isEmpty()) {
 						ShowMessage("Order total invlaid! Please check inputs.");
-					} 
-					else if (String.valueOf(order_type).isEmpty()) 
-					{
+					} else if (String.valueOf(order_type).isEmpty()) {
 						ShowMessage("Order type invalid! Please check inputs.");
 					}
-					
-				} 
-				
-				else                                                                     // Input is valid, order transferred to DB
+
+				}
+
+				else // Input is valid, order transferred to DB
 				{
 					ps.execute();
 					ShowMessage("Order added successfully!");
 				}
 
-			} 
-			catch (Exception e)                                                          // Input invalid
+			} catch (Exception e) // Input invalid
 			{
-				ShowMessage("Cannot process request. Please check inuts and try again.");
+				System.out.println(e);
+				ShowMessage("Cannot process request. Please try again.");
 			}
-			
-		}
-		else                                                                             // Input invalid
-		{
-			ShowMessage("Cannot process request. Please check inputs and try again.");
+
 		}
 	}
-		
+}
 
 		
 		
