@@ -32,7 +32,7 @@
             <Font size="18.0" />
          </font>
       </Text>
-      <TextField fx:id="txt_name" layoutX="135.0" layoutY="140.0" prefHeight="26.0" prefWidth="161.0" promptText="Name" />
+      <TextField fx:id="txt_cust_name" layoutX="135.0" layoutY="140.0" prefHeight="26.0" prefWidth="161.0" promptText="Name" />
       <Text layoutX="15.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pizza Type:" wrappingWidth="91.73871231079102">
          <font>
             <Font size="18.0" />
@@ -69,13 +69,13 @@
          </font>
       </Text>
       <ChoiceBox fx:id="payment_type" layoutX="135.0" layoutY="280.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="161.0" style="-fx-background-color: white;" />
-      <Button fx:id="done" alignment="CENTER" layoutX="11.0" layoutY="346.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#manager_hub" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: white;" stylesheets="@application.css" text="&lt;- Go Back" textAlignment="CENTER">
+      <Button fx:id="done" alignment="CENTER" layoutX="11.0" layoutY="346.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#employee_hub" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: white;" stylesheets="@application.css" text="&lt;- Go Back" textAlignment="CENTER">
          <styleClass>
             <String fx:value="buttonSmall" />
             <String fx:value="buttonWithText" />
          </styleClass>
       </Button>
-      <Button fx:id="order_payment" alignment="CENTER" layoutX="482.0" layoutY="346.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: white;" stylesheets="@application.css" text="Complete" textAlignment="CENTER">
+      <Button fx:id="order_payment" alignment="CENTER" layoutX="296.0" layoutY="346.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#completeOrder" prefHeight="40.0" prefWidth="107.0" style="-fx-background-color: white;" stylesheets="@application.css" text="Complete Order" textAlignment="CENTER">
          <styleClass>
             <String fx:value="buttonSmall" />
             <String fx:value="buttonWithText" />
@@ -86,5 +86,11 @@
             <Font size="10.0" />
          </font>
       </TextArea>
+      <Button fx:id="order_payment1" alignment="CENTER" layoutX="445.0" layoutY="346.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#change_to_placeOrderE" prefHeight="40.0" prefWidth="107.0" style="-fx-background-color: white;" stylesheets="@application.css" text="New Order" textAlignment="CENTER">
+         <styleClass>
+            <String fx:value="buttonSmall" />
+            <String fx:value="buttonWithText" />
+         </styleClass>
+      </Button>
    </children>
 </AnchorPane>
