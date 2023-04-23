@@ -1,10 +1,3 @@
-/**
-* Author:                Ethan
-* Last Editted:          2/18/2023
-*
-* Purpose:               This file is used to create the ManagerHubFrame's interface and appearance.
-*
-*/
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
@@ -19,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: FDBC8D;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.PizzaShopSystemController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: FDBC8D;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
    <children>
       <BorderPane layoutX="200.0" layoutY="89.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="15.0">
          <center>
@@ -33,7 +26,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button mnemonicParsing="false" onAction="#SwitchToPlaceOrderFrame" prefHeight="100.0" prefWidth="200.0" stylesheets="@application.css" text="Place&#10;Order" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                  <Button fx:id="place_order" mnemonicParsing="false" onAction="#change_to_placeOrder" prefHeight="100.0" prefWidth="200.0" stylesheets="@application.css" text="Place&#10;Order" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -41,17 +34,17 @@
                         <String fx:value="buttonLarge" />
                         <String fx:value="buttonWithTextLarge" />
                      </styleClass></Button>
-                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="100.0" prefWidth="200.0" stylesheets="@application.css" text="Generate&#10;Reports" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                  <Button fx:id="generate_reports" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#change_to_generateReports" prefHeight="100.0" prefWidth="200.0" stylesheets="@application.css" text="Generate&#10;Reports" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <styleClass>
                         <String fx:value="buttonLarge" />
                         <String fx:value="buttonWithTextLarge" />
                      </styleClass></Button>
-                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#SwitchToEmployeeInfoHubFrame" prefHeight="100.0" prefWidth="200.0" stylesheets="@application.css" text="Employee&#10;Management" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                  <Button fx:id="emp_manage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#change_to_emp_manage" prefHeight="100.0" prefWidth="200.0" stylesheets="@application.css" text="Employee&#10;Management" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <styleClass>
                         <String fx:value="buttonLarge" />
                         <String fx:value="buttonWithTextLarge" />
                      </styleClass></Button>
-                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="42.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="200.0" stylesheets="@application.css" text="Vehicle&#10;Management" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                  <Button fx:id="vehicle_manage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="42.0" mnemonicParsing="false" onAction="#change_to_vehicle_manage" prefHeight="100.0" prefWidth="200.0" stylesheets="@application.css" text="Vehicle&#10;Management" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <styleClass>
                         <String fx:value="buttonLarge" />
                         <String fx:value="buttonWithTextLarge" />
@@ -80,7 +73,7 @@
             </Pane>
          </top>
          <bottom>
-            <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" stylesheets="@application.css" text="Logout" textAlignment="CENTER" BorderPane.alignment="BOTTOM_LEFT">
+            <Button fx:id="logout" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#userLogout" prefHeight="40.0" prefWidth="100.0" stylesheets="@application.css" text="Logout" textAlignment="CENTER" BorderPane.alignment="BOTTOM_LEFT">
                <styleClass>
                   <String fx:value="buttonSmall" />
                   <String fx:value="buttonWithText" />
