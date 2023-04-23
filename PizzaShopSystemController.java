@@ -863,51 +863,52 @@ public class Controller implements Initializable {
 	}
 
 //--------------------------------------------------------- Graph Frame end ------------------------------------------------------------------------
-// -------------------------------------------------------- Place Order Frame start ---------------------------------------------------------------
 
+//--------------------------------------------------------- Place Order Frame begins ------------------------------------------------------------
+	
+	
 	// Pizza-related buttons
-
+	
 	@FXML
-	private ChoiceBox pizza_type = new ChoiceBox<String>(); // Allows user to choose
+	private ChoiceBox pizza_type = new ChoiceBox<String>();
 	private final ObservableList<String> pizzaTypeList = FXCollections.observableArrayList("Cheese", "Meat", "Veggie");
 
 	@FXML
-	private ChoiceBox pizza_size = new ChoiceBox<String>(); // Allows user to choose
+	private ChoiceBox pizza_size = new ChoiceBox<String>();
 	private final ObservableList<String> pizzaSizeList = FXCollections.observableArrayList("Small", "Medium", "Large");
 
 	@FXML
-	private Button add_pizza; // Confirms and adds pizza
-
+	private Button add_pizza;
+	
 	// Order-related buttons
+	
+	@FXML
+	private ChoiceBox order_type = new ChoiceBox<String>();
+	private final ObservableList<String> orderTypeList = FXCollections.observableArrayList("InHouse", "Takeout", "Delivery");
 
 	@FXML
-	private ChoiceBox order_type = new ChoiceBox<String>(); // Allows user to choose
-	private final ObservableList<String> orderTypeList = FXCollections.observableArrayList("InHouse", "Takeout",
-			"Delivery");
-
-	@FXML
-	private ChoiceBox payment_type = new ChoiceBox<String>(); // Allows user to choose
+	private ChoiceBox payment_type = new ChoiceBox<String>();
 	private final ObservableList<String> paymentTypeList = FXCollections.observableArrayList("Cash", "Card");
 
 	@FXML
-	private TextField txt_order_num; // Generate random order number
+	private TextField txt_order_num;
+	
+	@FXML
+	private TextField txt_cust_name;
+	
+	@FXML
+	private TextField txt_order_total;
+	
+	@FXML
+	private TextArea txtorder;
 
 	@FXML
-	private TextField txt_cust_name; // Allows user to input name
+	private Button completeOrder;
+	
+	
+	Order order = new Order();                                                 // Order object instantiated
 
-	// Total display
-
-	@FXML
-	private TextField txt_order_total; // Displays total after options chosen
-
-	@FXML
-	private TextArea txtorder; // for printing the current orders
-
-	// 1. Way to create order if needed
-
-	Order order = new Order(); // How can this be passed between frames?
-	double orderSubTotal; // ***This will not pass from P.O. to Payment frame***
-
+	
 	/**
 	 * This method adds the pizzas based on the options selected, but also handles
 	 * the information related to the order as well (i.e. Order Number, Order Type,
@@ -918,173 +919,194 @@ public class Controller implements Initializable {
 	 */
 	@FXML
 	public void addPizza() {
-
-		// Pizza handling
+		
+		// Try to receive inputs to create and display all order information.
+		
 		try {
 
-			if (pizza_type.getValue() != null && pizza_size.getValue() != null && order_type.getValue() != null
-					&& payment_type.getValue() != null) // i.e. pizza type and size must be selected
+			// Pizza Handling
+			
+			if (pizza_type.getValue() != null                                 // I.V. - Validate order and pizza info
+					&& pizza_size.getValue() != null 
+					&& order_type.getValue() != null
+					&& payment_type.getValue() != null)
 			{
 
-				if (pizza_type.getValue() == "Cheese") {
+				if (pizza_type.getValue() == "Cheese") {                      // Cheese Pizza Options
 
 					if (pizza_size.getValue() == "Small") {
-						Pizza pizza = new Pizza("Cheese", "Small"); // Price: 7.99
+						Pizza pizza = new Pizza("Cheese", "Small");
 						order.addItem(pizza);
+						// Price: 7.99
 						txtorder.appendText("\nOrder No: " + order.getOrderNumber() + "\nSmall Cheese Pizza Added!"
 								+ "\nPrice $7.99 + tax");
-
 					}
+					
 					if (pizza_size.getValue() == "Medium") {
-						Pizza pizza = new Pizza("Cheese", "Medium"); // Price: 9.99
+						Pizza pizza = new Pizza("Cheese", "Medium");
 						order.addItem(pizza);
+						// Price: 9.99
 						txtorder.appendText("\nOrder No: " + order.getOrderNumber() + "\nMedium Cheese Pizza Added!"
 								+ "\nPrice $9.99 + tax");
-
 					}
+					
 					if (pizza_size.getValue() == "Large") {
-						Pizza pizza = new Pizza("Cheese", "Large"); // Price: 11.99
+						Pizza pizza = new Pizza("Cheese", "Large");
 						order.addItem(pizza);
+						// Price: 11.99
 						txtorder.appendText("\nOrder No: " + order.getOrderNumber() + "\nLarge Cheese Pizza Added!"
 								+ "\nPrice $11.99 + tax");
-
 					}
 
 				}
 
-				if (pizza_type.getValue() == "Meat") {
+				if (pizza_type.getValue() == "Meat") {                         // Meat Pizza Options
+					
 					if (pizza_size.getValue() == "Small") {
-						Pizza pizza = new Pizza("Meat", "Small"); // Price: 9.99
+						Pizza pizza = new Pizza("Meat", "Small");
 						order.addItem(pizza);
+						// Price: 9.99
 						txtorder.appendText("\nOrder No: " + order.getOrderNumber() + "\nSmall Meat Pizza Added!"
 								+ "\nPrice $9.99 + tax");
-
 					}
+					
 					if (pizza_size.getValue() == "Medium") {
-						Pizza pizza = new Pizza("Meat", "Medium"); // Price: 14.99
+						Pizza pizza = new Pizza("Meat", "Medium");
 						order.addItem(pizza);
+						// Price: 14.99
 						txtorder.appendText("\nOrder No: " + order.getOrderNumber() + "\nMedium Meat Pizza Added!"
 								+ "\nPrice $14.99 + tax");
-
 					}
+					
 					if (pizza_size.getValue() == "Large") {
-						Pizza pizza = new Pizza("Meat", "Large"); // Price: 19.99
+						Pizza pizza = new Pizza("Meat", "Large");
 						order.addItem(pizza);
+						// Price: 19.99
 						txtorder.appendText("\nOrder No: " + order.getOrderNumber() + "\nLarge Meat Pizza Added!"
 								+ "\nPrice $19.99 + tax");
-
 					}
 
 				}
-				if (pizza_type.getValue() == "Veggie") {
+				
+				if (pizza_type.getValue() == "Veggie") {                        // Veggie Pizza Options
+					
 					if (pizza_size.getValue() == "Small") {
-						Pizza pizza = new Pizza("Veggie", "Small"); // Price: 9.99
+						Pizza pizza = new Pizza("Veggie", "Small");
 						order.addItem(pizza);
+						// Price: 9.99
 						txtorder.appendText("\nOrder No: " + order.getOrderNumber() + "\nSmall Veggie Pizza Added!"
 								+ "\nPrice $9.99 + tax");
-
 					}
+					
 					if (pizza_size.getValue() == "Medium") {
-						Pizza pizza = new Pizza("Veggie", "Medium"); // Price: 14.99
+						Pizza pizza = new Pizza("Veggie", "Medium");
 						order.addItem(pizza);
+						// Price: 14.99
 						txtorder.appendText("\nOrder No: " + order.getOrderNumber() + "\nMedium Veggie Pizza Added!"
 								+ "\nPrice $14.99 + tax");
-
 					}
+					
 					if (pizza_size.getValue() == "Large") {
-						Pizza pizza = new Pizza("Veggie", "Large"); // Price: 19.99
+						Pizza pizza = new Pizza("Veggie", "Large");
 						order.addItem(pizza);
+						// Price: 19.99
 						txtorder.appendText("\n\nOrder No: " + order.getOrderNumber() + "\nLarge Veggie Pizza Added!"
 								+ "\nPrice $19.99 + tax");
-
 					}
 
 				}
 
-				// Order handling (Order Type and added fees)
+				// Order Handling
 
-				if (order_type.getValue() == "InHouse") {
+				if (order_type.getValue() == "InHouse") {                        // + 5% InHouse Fee
 					order.setOrderType("InHouse");
 					order.calculateTotal(order);
 					txtorder.appendText("\nService: InHouse");
-
-				} else if (order_type.getValue() == "Takeout") {
+				} 
+				
+				else if (order_type.getValue() == "Takeout") {
 					order.setOrderType("Takeout");
-					// System.out.println("Set order type as in-house! %5 Fee Added!");
 					order.calculateTotal(order);
 					txtorder.appendText("\nService: Takeout");
-
-				} else if (order_type.getValue() == "Delivery") {
+				} 
+				
+				else if (order_type.getValue() == "Delivery") {                  // + 3.00 Delivery Fee
 					order.setOrderType("Service: Delivery");
-					// System.out.println("Set order type as delivery! $3.00 Fee Added!");
 					order.calculateTotal(order);
 					txtorder.appendText("\nDelivery");
-
 				}
+				
 			}
 
-			else /* Drop box fields are incomplete. */
+			else /* Drop box fields are incomplete */
 			{
-				ShowMessage("All fields not complete!");
+				ShowMessage("All fields not complete! Please try again.");
 			}
 
-			order.calculateSubTotal(order); // Total after taxes and fees
-
-			order.setOrderTotal(order.calculateTotal(order)); // Sets the total as what was calculated.
-
-			txt_order_total.setText(String.valueOf(order.getOrderTotal())); // Displays the total after order type is
-																			// chosen
+			order.calculateSubTotal(order);
+			order.setOrderTotal(order.calculateTotal(order));
+			txt_order_total.setText(String.valueOf(order.getOrderTotal()));   // Calculate and display order total												
 			txtorder.appendText("\nOrder Total: " + order.getOrderTotal() + "\n");
-			order.setOrderNumber(order.getOrderNumber());
-			txt_order_num.setText(String.valueOf(order.getOrderNumber())); // Should display the total to the frame
+			
+			order.setOrderNumber(order.getOrderNumber());                     // Generate and display order number
+			txt_order_num.setText(String.valueOf(order.getOrderNumber()));
 
-		} catch (Exception e) {
-			ShowMessage("Cannot process request. Please check if all your fields!");
+		} 
+		catch (Exception e) 
+		{
+			ShowMessage("Cannot process request! Please check input fields.");
 		}
+		
 	}
 	
+	/**
+	 * Method to initializee all of the choices boxes on the Place Order frame.
+	 */
 	public void pizzaList() {
-				// pizza_type.setValue("Cheese");
-				pizza_type.setItems(pizzaTypeList);
-
-				// pizza_size.setValue("Small");
-				pizza_size.setItems(pizzaSizeList);
-
-				// order_type.setValue("InHouse");
-				order_type.setItems(orderTypeList);
-
-				// payment_type.setValue("Cash");
-				payment_type.setItems(paymentTypeList);
+		pizza_type.setItems(pizzaTypeList);
+		pizza_size.setItems(pizzaSizeList);
+		order_type.setItems(orderTypeList);
+		payment_type.setItems(paymentTypeList);
+		
 	}
+	
 
 	/**
-	 * This method will add the order to the database.
+	 * This method will add the order to the database based on the information from within each of the
+	 * text boxes. This method also involves more input validation.
 	 */
 	public void completeOrder() {
 
-		Date today = new Date(); // Create a current date to use.
-		SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd"); // format it in terms of how sql formats
+		// Creating and formatting the current date for the DB
+		Date today = new Date();
+		SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
 		String orderDate = DATE_FORMAT.format(today);
 
 		// Start of adding order to DB
 		Connection con = DatabaseConnection.getConnection();
 		String sql = "insert into orders (Order_Number, Customer_Name, Order_Total, Order_Type, Order_Date) "
 				+ "values (?,?,?,?,?);";
-		if ((order_type.getValue() != null) && (payment_type.getValue() != null) && (!txt_order_num.getText().isEmpty())
-				&& (!txt_cust_name.getText().isEmpty()) && (!txt_order_total.getText().isEmpty())) // Inp. Val.
+		
+		// I.V. - Fields must all be filled
+		if ((order_type.getValue() != null)
+				&& (payment_type.getValue() != null) 
+				&& (!txt_order_num.getText().isEmpty())
+				&& (!txt_cust_name.getText().isEmpty()) 
+				&& (!txt_order_total.getText().isEmpty())) 
 		{
 
 			try {
 				PreparedStatement ps;
 				ps = con.prepareStatement(sql);
-				ps.setString(1, txt_order_num.getText()); // Column 1 info
-				ps.setString(2, txt_cust_name.getText()); // Column 2 info
-				ps.setString(3, txt_order_total.getText()); // Column 3 info
-				ps.setString(4, (String) order_type.getValue()); // Column 4 info
-				ps.setString(5, orderDate); // Column 5 info
+				ps.setString(1, txt_order_num.getText());                     // Column 1 info
+				ps.setString(2, txt_cust_name.getText());                     // Column 2 info
+				ps.setString(3, txt_order_total.getText());                   // Column 3 info
+				ps.setString(4, (String) order_type.getValue());              // Column 4 info
+				ps.setString(5, orderDate);                                   // Column 5 info
 
-				// Added layer of input validation.
-				if (txt_order_num.getText().isEmpty() || txt_cust_name.getText().isEmpty()
+				// Added layer of input validation
+				if (txt_order_num.getText().isEmpty() 
+						|| txt_cust_name.getText().isEmpty()
 						|| txt_order_total.getText().isEmpty()) {
 
 					if (txt_order_num.getText().isEmpty()) {
@@ -1099,13 +1121,14 @@ public class Controller implements Initializable {
 
 				}
 
-				else // Input is valid, order transferred to DB
+				else /* Input valid, order transferred to DB */
 				{
 					ps.execute();
 					ShowMessage("Order added successfully!");
 				}
 
-			} catch (Exception e) // Input invalid
+			} 
+			catch (Exception e)                                               // Input invalid
 			{
 				System.out.println(e);
 				ShowMessage("Cannot process request. Please try again.");
@@ -1113,6 +1136,5 @@ public class Controller implements Initializable {
 
 		}
 	}
-}
-
-//------------------------------------------------- Place Order Frame end ---------------------------------------------------------------
+}	
+//--------------------------------------------------------- Place Order Frame end --------------------------------------------------------------------
