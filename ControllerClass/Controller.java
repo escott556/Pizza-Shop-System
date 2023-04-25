@@ -920,7 +920,8 @@ public class Controller implements Initializable {
 			if (pizza_type.getValue() != null                                 // I.V. - Validate order and pizza info
 					&& pizza_size.getValue() != null 
 					&& order_type.getValue() != null
-					&& payment_type.getValue() != null)
+					&& payment_type.getValue() != null
+					&& !(txt_cust_name.getText().isEmpty()) )
 			{
 
 				if (pizza_type.getValue() == "Cheese") {                      // Cheese Pizza Options
