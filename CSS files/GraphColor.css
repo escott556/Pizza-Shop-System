@@ -1,0 +1,11 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+
+.chart-series-line{
+	-fx-stroke-width : 2px;
+}
+
+.default-color0.chart-series-line { -fx-stroke: #FF4141; }
+.default-color1.chart-series-line { -fx-stroke: #4546FF; }
+.default-color2.chart-series-line { -fx-stroke:  #2EA250; }
+.default-color3.chart-series-line { -fx-stroke: #F3BB4D;}
+
