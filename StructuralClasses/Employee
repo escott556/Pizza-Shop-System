@@ -110,7 +110,7 @@ public class Employee {
 	/**
 	 * 
 	 * @paramFileName
-	 * @return if employee name is valid or not
+	 * @return if employee address is valid or not
 	 */
 	public static boolean checkEmployeeAddress(String EmpAddress) {
 
@@ -125,7 +125,7 @@ public class Employee {
 	/**
 	 * 
 	 * @paramFileName
-	 * @return if employee name is valid or not
+	 * @return if employee phone is valid or not
 	 */
 	public static boolean checkEmployeePhone(String EmpPhone) {
 
