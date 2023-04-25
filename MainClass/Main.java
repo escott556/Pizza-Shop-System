@@ -42,5 +42,8 @@ public class Main extends Application {
 
 	public static void main(String[] args) {
 		launch(args);
+		Test_Calculations.testCalculateCost();
+		Test_Calculations.testCalculateSubTotal();
+		Test_Calculations.testCalculateTotal();
 	}
 }
