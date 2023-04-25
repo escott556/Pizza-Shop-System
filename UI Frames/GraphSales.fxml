@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #fdbc8d;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
+   <children>
+      <AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@GraphColor.css">
+         <children>
+            <Rectangle arcHeight="30.0" arcWidth="50.0" fill="WHITE" height="45.0" layoutX="24.0" layoutY="14.0" stroke="#fff8f8" strokeType="INSIDE" width="557.0" />
+            <Text layoutX="220.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome Manager">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+            <Text fontSmoothingType="LCD" layoutX="30.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please select the revenues you would like to be visualized by the graph." wrappingWidth="343.115234375">
+               <font>
+                  <Font name="System Bold Italic" size="11.0" />
+               </font>
+            </Text>
+            <LineChart fx:id="lineChart" alternativeRowFillVisible="false" blendMode="SRC_ATOP" createSymbols="false" layoutX="215.0" layoutY="108.0" legendVisible="false" mouseTransparent="true" prefHeight="300.0" prefWidth="392.0" stylesheets="@GraphColor.css" verticalGridLinesVisible="false" verticalZeroLineVisible="false">
+              <xAxis>
+                <CategoryAxis endMargin="100.0" label="Time Lapse" side="BOTTOM" startMargin="1.0" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis label="Revenue" side="LEFT" />
+              </yAxis>
+            </LineChart>
+            <Text fontSmoothingType="LCD" layoutX="88.0" layoutY="182.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Compare Revenues" wrappingWidth="117.0">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Text>
+            <Text fontSmoothingType="LCD" layoutX="39.0" layoutY="210.0" strokeType="OUTSIDE" strokeWidth="0.0" text="From">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <DatePicker layoutX="80.0" layoutY="192.0" prefHeight="26.0" prefWidth="133.0" promptText="MM / DD / YYYY" />
+            <Text fontSmoothingType="LCD" layoutX="46.0" layoutY="241.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <DatePicker layoutX="80.0" layoutY="223.0" prefHeight="25.0" prefWidth="133.0" promptText="MM / DD / YYYY" />
+            <Button layoutX="19.0" layoutY="354.0" mnemonicParsing="false" onAction="#change_to_generateReports" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: white;" stylesheets="@application.css" text="&lt;- Go Back" />
+            <Button fx:id="done" layoutX="152.0" layoutY="354.0" mnemonicParsing="false" onAction="#manager_hub" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: white;" stylesheets="@application.css" text="Done" />
+            <RadioButton fx:id="rb_inhouse" layoutX="40.0" layoutY="100.0" mnemonicParsing="false" onAction="#InHouse" stylesheets="@application.css" text="In House" />
+            <RadioButton fx:id="rb_takeout" layoutX="150.0" layoutY="100.0" mnemonicParsing="false" onAction="#Takeout" stylesheets="@application2.css" text="Takeout" />
+            <RadioButton fx:id="rb_delivery" layoutX="40.0" layoutY="130.0" mnemonicParsing="false" onAction="#Delivery" stylesheets="@application3.css" text="Delivery" />
+            <RadioButton fx:id="rb_grandtotal" layoutX="150.0" layoutY="130.0" mnemonicParsing="false" onAction="#GrandTotal" stylesheets="@application4.css" text="Grand Total" />
+            <Button fx:id="done1" layoutX="89.0" layoutY="266.0" mnemonicParsing="false" onAction="#clearData" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: white;" stylesheets="@application.css" text="Reset Graph(s)" />
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>
