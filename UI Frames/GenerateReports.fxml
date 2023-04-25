@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: FDBC8D;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
+   <children>
+      <BorderPane layoutX="200.0" layoutY="89.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="15.0">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <top>
+            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="570.0" style="-fx-background-color: ffffff;" styleClass="paneHeader" stylesheets="@application.css" BorderPane.alignment="CENTER">
+               <children>
+                  <Text layoutX="198.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sales Information" textAlignment="CENTER">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+         </top>
+         <bottom>
+            <Pane prefHeight="59.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button layoutX="14.0" layoutY="18.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#manager_hub" prefHeight="40.0" prefWidth="100.0" stylesheets="@application.css" text="&lt;- Go Back" textAlignment="CENTER">
+                     <styleClass>
+                        <String fx:value="buttonSmall" />
+                        <String fx:value="buttonWithText" />
+                     </styleClass>
+                  </Button>
+                  <Button layoutX="486.0" layoutY="18.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#change_to_graphSales" prefHeight="40.0" prefWidth="100.0" stylesheets="@application.css" text="Graph" textAlignment="CENTER">
+                     <styleClass>
+                        <String fx:value="buttonSmall" />
+                        <String fx:value="buttonWithText" />
+                     </styleClass>
+                  </Button>
+               </children>
+            </Pane>
+         </bottom>
+         <center>
+            <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Pane layoutX="64.0" layoutY="84.0" prefHeight="33.0" prefWidth="160.0" style="-fx-background-color: FFFFFF;" styleClass="paneHeader" stylesheets="@application.css">
+                     <children>
+                        <TextField fx:id="txt_grandtotal" editable="false" layoutX="-1.0" layoutY="-1.0" prefHeight="34.0" prefWidth="162.0" promptText="Grand total = $ 00.00" />
+                     </children>
+                  </Pane>
+                  <Pane layoutX="64.0" layoutY="159.0" prefHeight="33.0" prefWidth="160.0" style="-fx-background-color: FFFFFF;" styleClass="paneHeader" stylesheets="@application.css">
+                     <children>
+                        <TextField fx:id="txt_takeout" editable="false" layoutX="-1.0" layoutY="-1.0" prefHeight="34.0" prefWidth="162.0" promptText="Takeout = $ 00.00" />
+                     </children>
+                  </Pane>
+                  <Pane layoutX="340.0" layoutY="84.0" prefHeight="33.0" prefWidth="160.0" style="-fx-background-color: FFFFFF;" styleClass="paneHeader" stylesheets="@application.css">
+                     <children>
+                        <TextField fx:id="txt_inhouse" editable="false" layoutX="-1.0" layoutY="-1.0" prefHeight="34.0" prefWidth="162.0" promptText="In-House = $ 00.00" />
+                     </children>
+                  </Pane>
+                  <Pane layoutX="340.0" layoutY="159.0" prefHeight="33.0" prefWidth="160.0" style="-fx-background-color: FFFFFF;" styleClass="paneHeader" stylesheets="@application.css">
+                     <children>
+                        <TextField fx:id="txt_delivery" editable="false" prefHeight="34.0" prefWidth="161.0" promptText="Delivery = $ 00.00" />
+                     </children>
+                  </Pane>
+                  <Text layoutX="242.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Revenues">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>
