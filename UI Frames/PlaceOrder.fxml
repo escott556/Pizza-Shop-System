@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: FDBC8D;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
+   <children>
+      <Pane layoutX="15.0" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="570.0" style="-fx-background-color: white;" styleClass="paneHeader" stylesheets="@application.css">
+         <children>
+            <Text layoutX="207.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Place an Order">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <Text layoutX="15.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Order Number:" wrappingWidth="160.53870010375977">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txt_order_num" editable="false" layoutX="135.0" layoutY="70.0" prefHeight="26.0" prefWidth="161.0" promptText="Order Number" style="-fx-background-color: dcdcdc;" />
+      <Text layoutX="15.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Order Name:" wrappingWidth="121.93872451782227">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txt_cust_name" layoutX="135.0" layoutY="140.0" prefHeight="26.0" prefWidth="161.0" promptText="Name" />
+      <Text layoutX="15.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pizza Type:" wrappingWidth="91.73871231079102">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <ChoiceBox fx:id="pizza_type" layoutX="135.0" layoutY="210.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="161.0" style="-fx-background-color: white;" />
+      <Text layoutX="15.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pizza Size:" wrappingWidth="91.73871231079102">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <ChoiceBox fx:id="pizza_size" layoutX="135.0" layoutY="245.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="161.0" style="-fx-background-color: white;" />
+      <Text layoutX="15.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Service Type:" wrappingWidth="122.13867568969727">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <ChoiceBox fx:id="order_type" layoutX="135.0" layoutY="175.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="161.0" style="-fx-background-color: white;" />
+      <Button fx:id="add_pizza" alignment="CENTER" layoutX="159.0" layoutY="346.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addPizza" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: white;" stylesheets="@application.css" text="Add Pizza" textAlignment="CENTER">
+         <styleClass>
+            <String fx:value="buttonSmall" />
+            <String fx:value="buttonWithText" />
+         </styleClass>
+      </Button>
+      <Text layoutX="15.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Order Total:" wrappingWidth="91.73871231079102">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txt_order_total" editable="false" layoutX="135.0" layoutY="105.0" prefHeight="26.0" prefWidth="161.0" promptText="Order Total" style="-fx-background-color: dcdcdc;" />
+      <Text layoutX="15.0" layoutY="300.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Payment:" wrappingWidth="122.13867568969727">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <ChoiceBox fx:id="payment_type" layoutX="135.0" layoutY="280.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="161.0" style="-fx-background-color: white;" />
+      <Button fx:id="done" alignment="CENTER" layoutX="11.0" layoutY="346.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#manager_hub" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: white;" stylesheets="@application.css" text="&lt;- Go Back" textAlignment="CENTER">
+         <styleClass>
+            <String fx:value="buttonSmall" />
+            <String fx:value="buttonWithText" />
+         </styleClass>
+      </Button>
+      <Button fx:id="order_payment" alignment="CENTER" layoutX="296.0" layoutY="346.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#completeOrder" prefHeight="40.0" prefWidth="107.0" style="-fx-background-color: white;" stylesheets="@application.css" text="Complete Order" textAlignment="CENTER">
+         <styleClass>
+            <String fx:value="buttonSmall" />
+            <String fx:value="buttonWithText" />
+         </styleClass>
+      </Button>
+      <TextArea fx:id="txtorder" editable="false" layoutX="335.0" layoutY="66.0" prefHeight="242.0" prefWidth="247.0" promptText="Order(s) taken will appear here.">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </TextArea>
+      <Button fx:id="order_payment1" alignment="CENTER" layoutX="445.0" layoutY="346.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#change_to_placeOrder" prefHeight="40.0" prefWidth="107.0" style="-fx-background-color: white;" stylesheets="@application.css" text="New Order" textAlignment="CENTER">
+         <styleClass>
+            <String fx:value="buttonSmall" />
+            <String fx:value="buttonWithText" />
+         </styleClass>
+      </Button>
+   </children>
+</AnchorPane>
