@@ -177,7 +177,6 @@ public class Order // extends Orders?
 	public void setOrderTotal(double orderTotal) 
 	{
 		this.orderTotal = orderTotal;
-		System.out.println("Success in setting order total");
 	}
 
 	// Order Type
