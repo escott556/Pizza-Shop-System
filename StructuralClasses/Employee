@@ -91,5 +91,54 @@ public class Employee {
 			return null;
 		}
 	}
+	
+	/**
+	 * 
+	 * @paramFileName
+	 * @return if employee name is valid or not
+	 */
+	public static boolean checkEmployeeName(String EmpName) {
+
+		Pattern p = Pattern.compile("[a-zA-Z ]+" ); // can have a-z, A-Z
+		
+		Matcher m = p.matcher(EmpName);                 //Matches the pattern with the employee name
+		
+
+		return m.matches();     //returns true/false if the pattern matches the employee name or not
+	}
+
+	/**
+	 * 
+	 * @paramFileName
+	 * @return if employee name is valid or not
+	 */
+	public static boolean checkEmployeeAddress(String EmpAddress) {
+
+		Pattern p = Pattern.compile("[a-zA-Z0-9, ]+" ); // can have a-z, A-Z, 0-9, ','
+		
+		Matcher m = p.matcher(EmpAddress);                 //Matches the pattern with the employee address
+		
+
+		return m.matches();     //returns true/false if the pattern matches the employee address or not
+	}
+	
+	/**
+	 * 
+	 * @paramFileName
+	 * @return if employee name is valid or not
+	 */
+	public static boolean checkEmployeePhone(String EmpPhone) {
+
+		Pattern p = Pattern.compile("[0-9]+" ); // can have 0-9,
+		
+		Matcher m = p.matcher(EmpPhone);                 //Matches the pattern with the employee phone
+		
+
+		return m.matches();     //returns true/false if the pattern matches the employee phone or not
+	}
+}
+
+
+
 
 }
