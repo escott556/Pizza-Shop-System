@@ -85,5 +85,19 @@ public class Vehicle {
 			return null;
 		}
 	}
+		/**
+	 * 
+	 * @paramFileName
+	 * @return if vehicle name is valid or not
+	 */
+	public static boolean checkVehicleName(String EmpName) {
+
+		Pattern p = Pattern.compile("[a-zA-Z ]+" ); // can have a-z, A-Z
+		
+		Matcher m = p.matcher(EmpName);                 //Matches the pattern with the employee name
+		
+
+		return m.matches();     //returns true/false if the pattern matches the employee name or not
+	}
 
 }
