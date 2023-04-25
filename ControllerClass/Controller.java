@@ -352,7 +352,7 @@ public class Controller implements Initializable {
 			}
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 	}
 
@@ -433,7 +433,7 @@ public class Controller implements Initializable {
 			}
 
 		} catch (Exception e) {
-			System.out.println(e);
+			//System.out.println(e);
 		}
 	}
 
@@ -1028,11 +1028,6 @@ public class Controller implements Initializable {
 					txtorder.appendText("\nDelivery");
 				}
 				
-			}
-
-			else /* Drop box fields are incomplete */
-			{
-				ShowMessage("All fields not complete! Please try again.");
 			}
 
 			order.calculateSubTotal(order);
