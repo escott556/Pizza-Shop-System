@@ -1122,6 +1122,11 @@ public class Controller implements Initializable {
 			}
 
 		}
+		else
+		{
+			ShowMessage("\"Cannot process request. Please try again.\"");
+		}
+		
 	}
 }	
 //--------------------------------------------------------- Place Order Frame end --------------------------------------------------------------------
