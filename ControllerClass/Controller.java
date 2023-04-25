@@ -390,11 +390,19 @@ public class Controller implements Initializable {
 				}
 			} else { // if none of the above if true the statement will execute and update into the
 						// database
+				
+				//input validation for Employee Class
+				if(Employee.checkEmployeeName(txt_name.getText()) && Employee.checkEmployeeAddress(txt_add.getText()) && Employee.checkEmployeePhone(txt_phone.getText())) {
 				ps.execute();
 				ShowMessage("Employee Added!");
+				}
+				else {
+					ShowMessage("Invalid input for one/all of the field(s)");
+				}
 				// updating the table to show into the frame
 				updateTable();
 			}
+
 
 		} catch (Exception e) {
 
