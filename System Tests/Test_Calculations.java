@@ -19,7 +19,7 @@ import org.junit.Test;
 public class Test_Calculations {
 
 	@Test
-	public void testCalculateCost() throws Exception{
+	public static void testCalculateCost() throws Exception{
 
 		System.out.println("\nTESTING PIZZA PRICES\n");
 
@@ -137,7 +137,7 @@ public class Test_Calculations {
 	}// End of Pizza, testCalculateCost
 	
 	@Test
-	public void testCalculateSubTotal() throws Exception{
+	public static void testCalculateSubTotal() throws Exception{
 		
 		Order order = new Order();
 		order.addItem(new Pizza("Veggie", "Small"));
@@ -240,7 +240,7 @@ public class Test_Calculations {
 	}// End of Order, testCalculateSbTotal(Order order)
 	
 	@Test
-	public void testCalculateTotal() throws Exception{
+	public static void testCalculateTotal() throws Exception{
 		
 		Order order = new Order();
 		order.addItem(new Pizza("Veggie", "Small"));
