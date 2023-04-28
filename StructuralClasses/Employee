@@ -109,7 +109,7 @@ public class Employee {
 	
 	/**
 	 * 
-	 * @paramFileName
+	 * @param employee name
 	 * @return if employee name is valid or not
 	 */
 	public static boolean checkEmployeeName(String EmpName) {
@@ -124,7 +124,7 @@ public class Employee {
 
 	/**
 	 * 
-	 * @paramFileName
+	 * @param employee address
 	 * @return if employee address is valid or not
 	 */
 	public static boolean checkEmployeeAddress(String EmpAddress) {
@@ -139,7 +139,7 @@ public class Employee {
 	
 	/**
 	 * 
-	 * @paramFileName
+	 * @param employee phone
 	 * @return if employee phone is valid or not
 	 */
 	public static boolean checkEmployeePhone(String EmpPhone) {
@@ -151,6 +151,18 @@ public class Employee {
 
 		return m.matches();     //returns true/false if the pattern matches the employee phone or not
 	}
+	/**
+	*
+	*@param employee phone
+	* @return if employee phone is valid or not
+	*/
+	public static boolean checkValidPhone(String EmpPhone) {
+		if (EmpPhone.length() <= 10)
+			return true;
+		else
+			return false;
+	}
+
 }
 
 
