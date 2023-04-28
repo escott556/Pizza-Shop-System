@@ -11,20 +11,26 @@
 package application;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
-
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+/**
+ * Employee class to keep track of employee information
+ * @author bhaktipatel
+ *
+ */
 public class Employee {
-	private int empID;
-	private String empName;
-	private String empAdd;
-	private String empPhone;
 
+	int empID;
+	String empName ;
+	String empAdd;
+	String empPhone;
+	//Setters and getters
+	
 	public void setEmpID() {
 		this.empID = empID;
 	}
@@ -56,7 +62,13 @@ public class Employee {
 	public String getEmpPhone() {
 		return empPhone;
 	}
-
+	/**
+	 * default constructor
+	 * @param empID
+	 * @param empName
+	 * @param empAdd
+	 * @param empPhone
+	 */
 	public Employee(int empID, String empName, String empAdd, String empPhone) {
 		this.empID = empID;
 		this.empName = empName;
@@ -64,22 +76,25 @@ public class Employee {
 		this.empPhone = empPhone;
 	}
 
-	public Employee(String empName) {
-		this.empName = empName;
-	}
-
+	/**
+	 * 
+	 * @return list of all the employees from the database
+	 */
 	public static ObservableList<Employee> getEmployeeInfo() {
 
-		ObservableList<Employee> list = FXCollections.observableArrayList();
-		Connection con = DatabaseConnection.getConnection();
-		String sql = "select * from employee;";
+		ObservableList<Employee> list = FXCollections.observableArrayList(); //creating the list
+		Connection con = DatabaseConnection.getConnection();  //connecting to the database
+		String sql = "select * from employee;";   //Query for retrieving information of the employee
 		Statement s;
 		ResultSet rs;
 		try {
+			//create statement and execute the statement
+			
 			s = con.createStatement();
 			rs = s.executeQuery(sql);
 			Employee employee;
-
+			
+			//creating employee objects and adding it to the list
 			while (rs.next()) {
 				employee = (new Employee(rs.getInt("emp_ID"), rs.getString("emp_name"), rs.getString("emp_add"),
 						rs.getString("emp_phone")));
@@ -139,6 +154,3 @@ public class Employee {
 }
 
 
-
-
-}
